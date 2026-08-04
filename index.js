@@ -1,5 +1,5 @@
 /* =========================================================
-   NEXORA AI — MAIN APPLICATION
+   nexxorra AI — MAIN APPLICATION
    File: index.js
    Part 1: State, Storage, Session and Application Bootstrap
 ========================================================= */
@@ -19,14 +19,14 @@ import {
 ========================================================= */
 
 const APP_CONFIG = Object.freeze({
-    appName: "Nexora AI",
+    appName: "nexxorra AI",
 
     storageKeys: {
-        guestId: "nexoraGuestId",
-        conversations: "nexoraGuestConversations",
-        activeConversation: "nexoraActiveConversation",
-        guestUsage: "nexoraGuestUsage",
-        responseMode: "nexoraResponseMode"
+        guestId: "nexxorraGuestId",
+        conversations: "nexxorraGuestConversations",
+        activeConversation: "nexxorraActiveConversation",
+        guestUsage: "nexxorraGuestUsage",
+        responseMode: "nexxorraResponseMode"
     },
 
     guestLimits: {
@@ -120,7 +120,7 @@ const elements = {
 
 function cacheDOMElements() {
     elements.shell =
-        document.getElementById("nexoraShell");
+        document.getElementById("nexxorraShell");
 
     elements.conversationTitle =
         document.getElementById("conversationTitle");
@@ -215,7 +215,7 @@ function parseJSON(value, fallbackValue) {
         return JSON.parse(value);
     } catch (error) {
         console.warn(
-            "Nexora could not parse stored data:",
+            "nexxorra could not parse stored data:",
             error
         );
 
@@ -688,7 +688,7 @@ function setActiveConversation(
     if (emitEvent) {
         document.dispatchEvent(
             new CustomEvent(
-                "nexora:active-conversation-change",
+                "nexxorra:active-conversation-change",
                 {
                     detail: {
                         conversation: cloneData(
@@ -717,7 +717,7 @@ function clearActiveConversation({
     if (emitEvent) {
         document.dispatchEvent(
             new CustomEvent(
-                "nexora:active-conversation-change",
+                "nexxorra:active-conversation-change",
                 {
                     detail: {
                         conversation: null
@@ -1033,9 +1033,9 @@ function updateResponseModeUI() {
 
     if (elements.activeModelName) {
         const modelNames = {
-            balanced: "Nexora Core",
-            fast: "Nexora Swift",
-            deep: "Nexora Deep"
+            balanced: "nexxorra Core",
+            fast: "nexxorra Swift",
+            deep: "nexxorra Deep"
         };
 
         elements.activeModelName.textContent =
@@ -1063,7 +1063,7 @@ function setAuthenticatedUser({
 
     document.dispatchEvent(
         new CustomEvent(
-            "nexora:authentication-change",
+            "nexxorra:authentication-change",
             {
                 detail: {
                     user: user
@@ -1086,7 +1086,7 @@ function getDisplayNameFromUser(user) {
         user.user_metadata?.full_name ||
         user.user_metadata?.name ||
         user.email?.split("@")[0] ||
-        "Nexora user"
+        "nexxorra user"
     );
 }
 
@@ -1199,7 +1199,7 @@ async function resolveInitialSession() {
         }
     } catch (error) {
         console.info(
-            "Nexora is running in guest mode.",
+            "nexxorra is running in guest mode.",
             error
         );
     }
@@ -1222,7 +1222,7 @@ async function resolveInitialSession() {
 
 function bindAuthenticationEvents() {
     document.addEventListener(
-        "nexora:auth-session",
+        "nexxorra:auth-session",
         event => {
             const session =
                 event.detail?.session || null;
@@ -1240,7 +1240,7 @@ function bindAuthenticationEvents() {
     );
 
     document.addEventListener(
-        "nexora:logout",
+        "nexxorra:logout",
         () => {
             setAuthenticatedUser({
                 user: null,
@@ -1253,7 +1253,7 @@ function bindAuthenticationEvents() {
             showToast({
                 title: "Logged out",
                 message:
-                    "Nexora is now using guest mode.",
+                    "nexxorra is now using guest mode.",
                 type: "success"
             });
         }
@@ -1390,7 +1390,7 @@ function setGeneratingState(generating) {
     }
 
     document.documentElement.classList.toggle(
-        "nexora-generating",
+        "nexxorra-generating",
         appState.generating
     );
 }
@@ -1410,7 +1410,7 @@ function stopActiveGeneration() {
     showToast({
         title: "Generation stopped",
         message:
-            "Nexora stopped the current response.",
+            "nexxorra stopped the current response.",
         type: "info",
         duration: 1800
     });
@@ -1499,7 +1499,7 @@ function bindApplicationEvents() {
         );
 
     document.addEventListener(
-        "nexora:new-chat",
+        "nexxorra:new-chat",
         () => {
             clearActiveConversation();
             resetConversationInterface();
@@ -1507,7 +1507,7 @@ function bindApplicationEvents() {
     );
 
     document.addEventListener(
-        "nexora:response-mode-change",
+        "nexxorra:response-mode-change",
         event => {
             const mode =
                 event.detail?.mode;
@@ -1541,7 +1541,7 @@ function bindApplicationEvents() {
     );
 
     document.addEventListener(
-        "nexora:conversation-renamed",
+        "nexxorra:conversation-renamed",
         event => {
             const conversationId =
                 event.detail
@@ -1573,7 +1573,7 @@ function bindApplicationEvents() {
     );
 
     document.addEventListener(
-        "nexora:conversation-delete",
+        "nexxorra:conversation-delete",
         event => {
             const conversationId =
                 event.detail
@@ -1592,7 +1592,7 @@ function bindApplicationEvents() {
 
             document.dispatchEvent(
                 new CustomEvent(
-                    "nexora:conversation-list-change"
+                    "nexxorra:conversation-list-change"
                 )
             );
         }
@@ -1660,7 +1660,7 @@ async function initializeApplication() {
 
         document.dispatchEvent(
             new CustomEvent(
-                "nexora:application-ready",
+                "nexxorra:application-ready",
                 {
                     detail: {
                         user: appState.user
@@ -1699,7 +1699,7 @@ async function initializeApplication() {
         );
     } catch (error) {
         console.error(
-            "Nexora application startup failed:",
+            "nexxorra application startup failed:",
             error
         );
 
@@ -1707,7 +1707,7 @@ async function initializeApplication() {
 
         showToast({
             title:
-                "Nexora could not fully start",
+                "nexxorra could not fully start",
             message:
                 "Guest mode is still available. Refresh the page if the issue continues.",
             type: "error",
@@ -1720,7 +1720,7 @@ async function initializeApplication() {
 
         document.documentElement
             .classList
-            .add("nexora-app-ready");
+            .add("nexxorra-app-ready");
     }
 }
 
@@ -1779,7 +1779,7 @@ if (document.readyState === "loading") {
 }
 
 /* =========================================================
-   NEXORA AI — MAIN APPLICATION
+   nexxorra AI — MAIN APPLICATION
    File: index.js
    Part 2: Conversation UI, Memory Rendering and Messages
 ========================================================= */
@@ -1916,7 +1916,7 @@ function createMemoryItem(
 
             document.dispatchEvent(
                 new CustomEvent(
-                    "nexora:open-conversation-menu",
+                    "nexxorra:open-conversation-menu",
                     {
                         detail: {
                             conversationId:
@@ -2094,7 +2094,7 @@ function selectConversationFromMemory(
 
     document.dispatchEvent(
         new CustomEvent(
-            "nexora:close-memory-tray"
+            "nexxorra:close-memory-tray"
         )
     );
 }
@@ -2308,7 +2308,7 @@ function createCodeBlock(
 
     const codeBlock =
         fragment.querySelector(
-            ".nexora-code-block"
+            ".nexxorra-code-block"
         );
 
     const languageLabel =
@@ -2676,7 +2676,7 @@ function createAssistantMessageElement(
 
                 message:
                     copied
-                        ? "Nexora's response was copied."
+                        ? "nexxorra's response was copied."
                         : "The response could not be copied.",
 
                 type:
@@ -2695,7 +2695,7 @@ function createAssistantMessageElement(
             () => {
                 document.dispatchEvent(
                     new CustomEvent(
-                        "nexora:regenerate-response",
+                        "nexxorra:regenerate-response",
                         {
                             detail: {
                                 messageId:
@@ -2890,7 +2890,7 @@ function bindResponseEvaluationButtons(
 
                     document.dispatchEvent(
                         new CustomEvent(
-                            "nexora:response-feedback",
+                            "nexxorra:response-feedback",
                             {
                                 detail: {
                                     messageId:
@@ -2911,7 +2911,7 @@ function bindResponseEvaluationButtons(
                             "Feedback recorded",
 
                         message:
-                            "Thanks for helping improve Nexora.",
+                            "Thanks for helping improve nexxorra.",
 
                         type: "success",
                         duration: 1700
@@ -2951,7 +2951,7 @@ function beginEditingUserMessage(
 
     document.dispatchEvent(
         new CustomEvent(
-            "nexora:user-message-edit",
+            "nexxorra:user-message-edit",
             {
                 detail: {
                     messageId:
@@ -3501,7 +3501,7 @@ function handleMessageFormSubmit(
 
     document.dispatchEvent(
         new CustomEvent(
-            "nexora:message-submit",
+            "nexxorra:message-submit",
             {
                 detail: {
                     conversation:
@@ -3532,7 +3532,7 @@ function handleMessageFormSubmit(
 
 function bindConversationMenuBridge() {
     document.addEventListener(
-        "nexora:open-conversation-menu",
+        "nexxorra:open-conversation-menu",
         async event => {
             const detail =
                 event.detail || {};
@@ -3573,7 +3573,7 @@ function bindConversationMenuBridge() {
     );
 
     document.addEventListener(
-        "nexora:close-memory-tray",
+        "nexxorra:close-memory-tray",
         async () => {
             try {
                 const uiModule =
@@ -3637,12 +3637,12 @@ function handleApplicationReady(
 
 function bindConversationUIEvents() {
     document.addEventListener(
-        "nexora:application-ready",
+        "nexxorra:application-ready",
         handleApplicationReady
     );
 
     document.addEventListener(
-        "nexora:conversation-list-change",
+        "nexxorra:conversation-list-change",
         () => {
             renderMemoryTray();
             renderActiveConversation();
@@ -3650,7 +3650,7 @@ function bindConversationUIEvents() {
     );
 
     document.addEventListener(
-        "nexora:active-conversation-change",
+        "nexxorra:active-conversation-change",
         event => {
             const conversation =
                 event.detail
@@ -3680,7 +3680,7 @@ function bindConversationUIEvents() {
     );
 
     document.addEventListener(
-        "nexora:conversation-renamed",
+        "nexxorra:conversation-renamed",
         () => {
             renderMemoryTray();
             updateConversationHeader(
@@ -3690,7 +3690,7 @@ function bindConversationUIEvents() {
     );
 
     document.addEventListener(
-        "nexora:new-chat",
+        "nexxorra:new-chat",
         () => {
             startNewConversation({
                 focusInput: true
@@ -3732,7 +3732,7 @@ function initializeConversationInterface() {
     document.documentElement
         .classList
         .add(
-            "nexora-conversation-ui-ready"
+            "nexxorra-conversation-ui-ready"
         );
 }
 
@@ -3754,7 +3754,7 @@ if (document.readyState === "loading") {
 }
 
 /* =========================================================
-   NEXORA AI — MAIN APPLICATION
+   nexxorra AI — MAIN APPLICATION
    File: index.js
    Part 3: AI Lifecycle, Regenerate, Sync and Final Events
 ========================================================= */
@@ -3777,7 +3777,7 @@ async function getChatModule() {
         chatModulePromise = null;
 
         console.error(
-            "Nexora chat module failed to load:",
+            "nexxorra chat module failed to load:",
             error
         );
 
@@ -4182,7 +4182,7 @@ function getReadableChatError(error) {
         code.includes("unauthorized")
     ) {
         return (
-            "Nexora could not verify this request. " +
+            "nexxorra could not verify this request. " +
             "Please log in again or refresh the page."
         );
     }
@@ -4193,7 +4193,7 @@ function getReadableChatError(error) {
         message.includes("rate limit")
     ) {
         return (
-            "Nexora is receiving too many requests right now. " +
+            "nexxorra is receiving too many requests right now. " +
             "Please wait briefly and try again."
         );
     }
@@ -4213,7 +4213,7 @@ function getReadableChatError(error) {
         message.includes("fetch")
     ) {
         return (
-            "Nexora could not reach the server. " +
+            "nexxorra could not reach the server. " +
             "Check your internet connection and try again."
         );
     }
@@ -4222,13 +4222,13 @@ function getReadableChatError(error) {
         message.includes("empty response")
     ) {
         return (
-            "Nexora returned an empty response. " +
+            "nexxorra returned an empty response. " +
             "Please regenerate the answer."
         );
     }
 
     return (
-        "Nexora could not complete this response. " +
+        "nexxorra could not complete this response. " +
         "Please try again."
     );
 }
@@ -4288,7 +4288,7 @@ function showChatErrorToast(error) {
         title: "Response failed",
 
         message:
-            "Nexora could not complete the response.",
+            "nexxorra could not complete the response.",
 
         type: "error",
 
@@ -4735,7 +4735,7 @@ async function loadAuthenticatedConversations() {
             title: "History unavailable",
 
             message:
-                "Nexora could not load your synced conversations.",
+                "nexxorra could not load your synced conversations.",
 
             type: "error",
 
@@ -5088,7 +5088,7 @@ async function generateAssistantResponse({
 
         document.dispatchEvent(
             new CustomEvent(
-                "nexora:response-complete",
+                "nexxorra:response-complete",
                 {
                     detail: {
                         conversationId,
@@ -5310,7 +5310,7 @@ async function regenerateAssistantResponse({
             title: "Message unavailable",
 
             message:
-                "Nexora could not find the original question.",
+                "nexxorra could not find the original question.",
 
             type: "error"
         });
@@ -5418,7 +5418,7 @@ function handleEditedMessageSubmission(
 
     document.dispatchEvent(
         new CustomEvent(
-            "nexora:edited-message-ready",
+            "nexxorra:edited-message-ready",
             {
                 detail: {
                     conversationId:
@@ -5472,7 +5472,7 @@ async function handleEditedMessageReady(
 
 function bindEditedMessageInterceptor() {
     document.addEventListener(
-        "nexora:message-submit",
+        "nexxorra:message-submit",
         event => {
             if (!appState.lastUserMessage) {
                 return;
@@ -5797,7 +5797,7 @@ function buildConversationShareText(
             const speaker =
                 message.role === "user"
                     ? "You"
-                    : "Nexora";
+                    : "nexxorra";
 
             lines.push(
                 `${speaker}:`
@@ -5812,7 +5812,7 @@ function buildConversationShareText(
     );
 
     lines.push(
-        "Created with Nexora AI"
+        "Created with nexxorra AI"
     );
 
     return lines.join("\n");
@@ -5923,7 +5923,7 @@ function initializeVoiceInput() {
                 title: "Listening",
 
                 message:
-                    "Speak naturally. Nexora will add your words to the message.",
+                    "Speak naturally. nexxorra will add your words to the message.",
 
                 type: "info",
 
@@ -6024,7 +6024,7 @@ function initializeVoiceInput() {
                     title: "Voice input stopped",
 
                     message:
-                        "Nexora could not understand the audio.",
+                        "nexxorra could not understand the audio.",
 
                     type: "warning"
                 });
@@ -6129,7 +6129,7 @@ function bindNetworkStatusEvents() {
                 title: "Back online",
 
                 message:
-                    "Nexora can connect to the AI service again.",
+                    "nexxorra can connect to the AI service again.",
 
                 type: "success",
 
@@ -6146,17 +6146,17 @@ function bindNetworkStatusEvents() {
 
 function bindFinalApplicationEvents() {
     document.addEventListener(
-        "nexora:message-submit",
+        "nexxorra:message-submit",
         handleAIMessageSubmission
     );
 
     document.addEventListener(
-        "nexora:edited-message-ready",
+        "nexxorra:edited-message-ready",
         handleEditedMessageReady
     );
 
     document.addEventListener(
-        "nexora:regenerate-response",
+        "nexxorra:regenerate-response",
         event => {
             regenerateAssistantResponse({
                 assistantMessageId:
@@ -6171,22 +6171,22 @@ function bindFinalApplicationEvents() {
     );
 
     document.addEventListener(
-        "nexora:response-feedback",
+        "nexxorra:response-feedback",
         syncResponseFeedback
     );
 
     document.addEventListener(
-        "nexora:conversation-renamed",
+        "nexxorra:conversation-renamed",
         syncConversationRename
     );
 
     document.addEventListener(
-        "nexora:conversation-delete",
+        "nexxorra:conversation-delete",
         handleRemoteConversationDelete
     );
 
     document.addEventListener(
-        "nexora:authentication-change",
+        "nexxorra:authentication-change",
         handleAuthenticationChange
     );
 
@@ -6226,7 +6226,7 @@ function initializeFinalApplicationLayer() {
 
     document.documentElement
         .classList.add(
-            "nexora-ai-layer-ready"
+            "nexxorra-ai-layer-ready"
         );
 }
 

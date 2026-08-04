@@ -1,5 +1,5 @@
 /* =========================================================
-   NEXORA AI — AUTHENTICATION PAGES
+   nexxorra AI — AUTHENTICATION PAGES
    File: auth.css
 ========================================================= */
 
@@ -1411,8 +1411,8 @@ html[data-theme="light"] .auth-brand-content h1 span {
     transform: translateX(12px);
 }
 
-.nexora-auth-offline .auth-submit-button,
-.nexora-auth-offline .oauth-button {
+.nexxorra-auth-offline .auth-submit-button,
+.nexxorra-auth-offline .oauth-button {
     opacity: 0.58;
 }
 

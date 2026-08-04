@@ -1,5 +1,5 @@
 /* =========================================================
-   NEXORA AI — RESPONSIVE STYLES
+   nexxorra AI — RESPONSIVE STYLES
    File: responsive.css
 
    Load order:
@@ -91,7 +91,7 @@
 
 @media (min-width: 1025px) and (max-width: 1199px) {
 
-    .nexora-shell {
+    .nexxorra-shell {
         grid-template-columns: 70px minmax(0, 1fr);
     }
 
@@ -150,7 +150,7 @@
 
 @media (min-width: 769px) and (max-width: 1024px) {
 
-    .nexora-shell {
+    .nexxorra-shell {
         grid-template-columns: 68px minmax(0, 1fr);
     }
 
@@ -250,7 +250,7 @@
 
 @media (min-width: 601px) and (max-width: 768px) {
 
-    .nexora-shell {
+    .nexxorra-shell {
         display: block;
     }
 
@@ -290,7 +290,7 @@
         flex: 1;
     }
 
-    .nexora-symbol,
+    .nexxorra-symbol,
     .rail-separator,
     #chatViewButton,
     .rail-bottom .rail-action {
@@ -322,7 +322,7 @@
         transform: translateY(100%);
     }
 
-    .nexora-shell.memory-open .memory-tray {
+    .nexxorra-shell.memory-open .memory-tray {
         transform: translateY(0);
     }
 
@@ -440,11 +440,11 @@
         overflow-x: hidden;
     }
 
-    .nexora-app {
+    .nexxorra-app {
         min-height: 100dvh;
     }
 
-    .nexora-shell {
+    .nexxorra-shell {
         width: 100%;
         display: block;
     }
@@ -488,7 +488,7 @@
         flex: 1;
     }
 
-    .nexora-symbol,
+    .nexxorra-symbol,
     .rail-separator,
     #chatViewButton,
     .rail-bottom .rail-action {
@@ -534,7 +534,7 @@
         transform: translateY(102%);
     }
 
-    .nexora-shell.memory-open .memory-tray {
+    .nexxorra-shell.memory-open .memory-tray {
         transform: translateY(0);
     }
 
@@ -755,17 +755,17 @@
         max-width: calc(100vw - 68px);
     }
 
-    .nexora-code-block {
+    .nexxorra-code-block {
         max-width: calc(100vw - 68px);
         margin-inline: 0;
         border-radius: 11px;
     }
 
-    .nexora-code-block pre {
+    .nexxorra-code-block pre {
         padding: 14px;
     }
 
-    .nexora-code-block code {
+    .nexxorra-code-block code {
         font-size: 11px;
     }
 
@@ -886,7 +886,7 @@
         display: none;
     }
 
-    .nexora-modal {
+    .nexxorra-modal {
         align-items: end;
         padding: 8px;
     }
@@ -999,7 +999,7 @@
         width: 100%;
     }
 
-    .nexora-code-block {
+    .nexxorra-code-block {
         max-width: calc(100vw - 18px);
     }
 
@@ -1160,8 +1160,8 @@
 
 @supports (height: 100dvh) {
 
-    .nexora-app,
-    .nexora-shell,
+    .nexxorra-app,
+    .nexxorra-shell,
     .product-stage {
         min-height: 100dvh;
     }
@@ -1251,7 +1251,7 @@
     .command-rail,
     .prompt-path,
     .user-turn-content,
-    .nexora-code-block,
+    .nexxorra-code-block,
     .modal-panel {
         border-color: rgba(156, 176, 128, 0.42);
     }
@@ -1283,7 +1283,7 @@
         display: none !important;
     }
 
-    .nexora-shell,
+    .nexxorra-shell,
     .product-stage {
         display: block;
         height: auto;

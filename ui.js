@@ -1,5 +1,5 @@
 /* =========================================================
-   NEXORA AI — UI CONTROLLER
+   nexxorra AI — UI CONTROLLER
    File: ui.js
 ========================================================= */
 
@@ -56,7 +56,7 @@ function focusElement(element) {
 ========================================================= */
 
 export function showToast({
-    title = "Nexora",
+    title = "nexxorra",
     message = "",
     type = "info",
     duration = 3200
@@ -154,7 +154,7 @@ export function showToast({
    3. GLOBAL LOADER
 ========================================================= */
 
-export function showGlobalLoader(text = "Loading Nexora") {
+export function showGlobalLoader(text = "Loading nexxorra") {
     const loader = getElement("globalLoader");
 
     if (!loader) return;
@@ -184,7 +184,7 @@ export function hideGlobalLoader() {
 ========================================================= */
 
 export function openMemoryTray() {
-    const shell = getElement("nexoraShell");
+    const shell = getElement("nexxorraShell");
     const memoryTray = getElement("memoryTray");
     const memoryTrayButton = getElement("memoryTrayButton");
     const mobileBackdrop = getElement("mobileTrayBackdrop");
@@ -207,7 +207,7 @@ export function openMemoryTray() {
 }
 
 export function closeMemoryTray() {
-    const shell = getElement("nexoraShell");
+    const shell = getElement("nexxorraShell");
     const memoryTray = getElement("memoryTray");
     const memoryTrayButton = getElement("memoryTrayButton");
     const mobileBackdrop = getElement("mobileTrayBackdrop");
@@ -225,7 +225,7 @@ export function closeMemoryTray() {
 }
 
 export function toggleMemoryTray() {
-    const shell = getElement("nexoraShell");
+    const shell = getElement("nexxorraShell");
 
     if (!shell) return;
 
@@ -321,7 +321,7 @@ export function toggleAccountDropdown() {
 ========================================================= */
 
 function getPreferredTheme() {
-    const storedTheme = localStorage.getItem("nexoraTheme");
+    const storedTheme = localStorage.getItem("nexxorraTheme");
 
     if (storedTheme === "light" || storedTheme === "dark") {
         return storedTheme;
@@ -337,7 +337,7 @@ function applyTheme(theme) {
 
     document.documentElement.dataset.theme = theme;
 
-    localStorage.setItem("nexoraTheme", theme);
+    localStorage.setItem("nexxorraTheme", theme);
 
     if (themeIcon) {
         themeIcon.className =
@@ -515,7 +515,7 @@ function saveConversationName(event) {
     closeModal("renameConversationModal");
 
     document.dispatchEvent(
-        new CustomEvent("nexora:conversation-renamed", {
+        new CustomEvent("nexxorra:conversation-renamed", {
             detail: {
                 conversationId: uiState.selectedConversationId,
                 title: newName
@@ -547,7 +547,7 @@ function confirmDeleteConversation() {
         null;
 
     document.dispatchEvent(
-        new CustomEvent("nexora:conversation-delete", {
+        new CustomEvent("nexxorra:conversation-delete", {
             detail: {
                 conversationId: selectedId
             }
@@ -624,12 +624,12 @@ function selectResponseMode(option) {
         responseModeLabel.textContent = label;
     }
 
-    localStorage.setItem("nexoraResponseMode", mode);
+    localStorage.setItem("nexxorraResponseMode", mode);
 
     closeResponseModeMenu();
 
     document.dispatchEvent(
-        new CustomEvent("nexora:response-mode-change", {
+        new CustomEvent("nexxorra:response-mode-change", {
             detail: {
                 mode,
                 label
@@ -930,7 +930,7 @@ function selectMemoryItem(item) {
     }
 
     document.dispatchEvent(
-        new CustomEvent("nexora:conversation-select", {
+        new CustomEvent("nexxorra:conversation-select", {
             detail: {
                 conversationId:
                     uiState.selectedConversationId,
@@ -1043,7 +1043,7 @@ function resetNewChatInterface() {
     closeMemoryTray();
 
     document.dispatchEvent(
-        new CustomEvent("nexora:new-chat")
+        new CustomEvent("nexxorra:new-chat")
     );
 }
 
@@ -1365,7 +1365,7 @@ function bindGlobalEvents() {
 
 function restoreResponseMode() {
     const storedMode =
-        localStorage.getItem("nexoraResponseMode") ||
+        localStorage.getItem("nexxorraResponseMode") ||
         "balanced";
 
     const option = document.querySelector(
@@ -1408,7 +1408,7 @@ export function initializeUI() {
     }
 
     document.documentElement.classList.add(
-        "nexora-ui-ready"
+        "nexxorra-ui-ready"
     );
 }
 

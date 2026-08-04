@@ -1,5 +1,5 @@
 /* =========================================================
-   NEXORA AI — SUPABASE DATABASE CLIENT
+   nexxorra AI — SUPABASE DATABASE CLIENT
    File: supabase.js
 ========================================================= */
 
@@ -32,7 +32,7 @@ let authListenerSubscription = null;
    2. CUSTOM ERROR
 ========================================================= */
 
-export class NexoraDatabaseError extends Error {
+export class nexxorraDatabaseError extends Error {
     constructor(
         message,
         {
@@ -44,7 +44,7 @@ export class NexoraDatabaseError extends Error {
     ) {
         super(message);
 
-        this.name = "NexoraDatabaseError";
+        this.name = "nexxorraDatabaseError";
         this.code = code;
         this.status = status;
         this.details = details;
@@ -106,11 +106,11 @@ function createDatabaseError(
     error,
     fallbackMessage = "A database request failed."
 ) {
-    if (error instanceof NexoraDatabaseError) {
+    if (error instanceof nexxorraDatabaseError) {
         return error;
     }
 
-    return new NexoraDatabaseError(
+    return new nexxorraDatabaseError(
         error?.message || fallbackMessage,
         {
             code:
@@ -159,7 +159,7 @@ export function initializeSupabase() {
         !isSupabaseConfigured() ||
         !validation.valid
     ) {
-        throw new NexoraDatabaseError(
+        throw new nexxorraDatabaseError(
             validation.errors.join(" ") ||
                 "Supabase is not configured.",
             {
@@ -198,7 +198,7 @@ export function initializeSupabase() {
             global: {
                 headers: {
                     "X-Client-Info":
-                        "nexora-web"
+                        "nexxorra-web"
                 }
             }
         }
@@ -283,7 +283,7 @@ export async function requireAuthenticatedUser() {
     } = await getCurrentSession();
 
     if (!session || !user) {
-        throw new NexoraDatabaseError(
+        throw new nexxorraDatabaseError(
             "You must be logged in.",
             {
                 code:
@@ -327,7 +327,7 @@ export function listenToAuthChanges() {
 
             document.dispatchEvent(
                 new CustomEvent(
-                    "nexora:auth-session",
+                    "nexxorra:auth-session",
                     {
                         detail: {
                             event,
@@ -343,7 +343,7 @@ export function listenToAuthChanges() {
             if (event === "SIGNED_OUT") {
                 document.dispatchEvent(
                     new CustomEvent(
-                        "nexora:logout"
+                        "nexxorra:logout"
                     )
                 );
             }
@@ -1076,7 +1076,7 @@ export async function saveConversation(
     } = await requireAuthenticatedUser();
 
     if (!conversation) {
-        throw new NexoraDatabaseError(
+        throw new nexxorraDatabaseError(
             "A conversation is required.",
             {
                 code:
@@ -1288,7 +1288,7 @@ export async function renameConversation(
     await requireAuthenticatedUser();
 
     if (!isUUID(conversationId)) {
-        throw new NexoraDatabaseError(
+        throw new nexxorraDatabaseError(
             "The conversation has not been synchronized yet.",
             {
                 code:
@@ -1301,7 +1301,7 @@ export async function renameConversation(
         normalizeText(title);
 
     if (!normalizedTitle) {
-        throw new NexoraDatabaseError(
+        throw new nexxorraDatabaseError(
             "A conversation name is required.",
             {
                 code:
@@ -1745,7 +1745,7 @@ export async function testSupabaseConnection() {
 function initializeSupabaseLayer() {
     if (!isSupabaseConfigured()) {
         console.warn(
-            "Nexora Supabase configuration is missing."
+            "nexxorra Supabase configuration is missing."
         );
 
         return;
@@ -1763,7 +1763,7 @@ function initializeSupabaseLayer() {
                 }) => {
                     document.dispatchEvent(
                         new CustomEvent(
-                            "nexora:auth-session",
+                            "nexxorra:auth-session",
                             {
                                 detail: {
                                     event:
@@ -1787,7 +1787,7 @@ function initializeSupabaseLayer() {
         document.documentElement
             .classList
             .add(
-                "nexora-supabase-ready"
+                "nexxorra-supabase-ready"
             );
     } catch (error) {
         console.error(
@@ -1819,7 +1819,7 @@ if (document.readyState === "loading") {
    24. DEFAULT EXPORT
 ========================================================= */
 
-const NexoraSupabase =
+const nexxorraSupabase =
     Object.freeze({
         client:
             getSupabaseClient,
@@ -1891,4 +1891,4 @@ const NexoraSupabase =
             testSupabaseConnection
     });
 
-export default NexoraSupabase;
+export default nexxorraSupabase;

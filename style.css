@@ -1,5 +1,5 @@
 /* =========================================================
-   NEXORA AI — ORIGINAL APPLICATION LAYOUT
+   nexxorra AI — ORIGINAL APPLICATION LAYOUT
    INDEX.HTML ONLY
 ========================================================= */
 
@@ -8,7 +8,7 @@
    1. APPLICATION FRAME
 ========================================================= */
 
-.nexora-app {
+.nexxorra-app {
     min-height: 100vh;
     min-height: 100dvh;
     overflow: hidden;
@@ -16,7 +16,7 @@
     color: var(--text-main, #F4F7F2);
 }
 
-.nexora-shell {
+.nexxorra-shell {
     width: 100%;
     min-height: 100vh;
     min-height: 100dvh;
@@ -82,7 +82,7 @@
     gap: 8px;
 }
 
-.nexora-symbol {
+.nexxorra-symbol {
     display: grid;
     place-items: center;
     margin-bottom: 12px;
@@ -264,7 +264,7 @@
         transform 220ms ease;
 }
 
-.nexora-shell.memory-open .memory-tray {
+.nexxorra-shell.memory-open .memory-tray {
     opacity: 1;
     pointer-events: auto;
     transform: translateX(0);
@@ -1270,7 +1270,7 @@
    9. CODE BLOCK
 ========================================================= */
 
-.nexora-code-block {
+.nexxorra-code-block {
     overflow: hidden;
     margin: 19px 0;
     border: 1px solid rgba(156, 176, 128, 0.14);
@@ -1278,7 +1278,7 @@
     background: #1b2427;
 }
 
-.nexora-code-block header {
+.nexxorra-code-block header {
     min-height: 42px;
     display: flex;
     align-items: center;
@@ -1316,13 +1316,13 @@
     color: var(--text-main, #F4F7F2);
 }
 
-.nexora-code-block pre {
+.nexxorra-code-block pre {
     margin: 0;
     overflow-x: auto;
     padding: 17px;
 }
 
-.nexora-code-block code {
+.nexxorra-code-block code {
     color: #dce7d3;
     font-family: Consolas, "SFMono-Regular", monospace;
     font-size: 12px;
@@ -1760,7 +1760,7 @@
    12. MODALS
 ========================================================= */
 
-.nexora-modal {
+.nexxorra-modal {
     position: fixed;
     inset: 0;
     z-index: 500;
@@ -2028,11 +2028,11 @@
    14. FOCUS AND VISIBILITY
 ========================================================= */
 
-.nexora-app button:focus-visible,
-.nexora-app a:focus-visible,
-.nexora-app input:focus-visible,
-.nexora-app textarea:focus-visible,
-.nexora-app [tabindex]:focus-visible {
+.nexxorra-app button:focus-visible,
+.nexxorra-app a:focus-visible,
+.nexxorra-app input:focus-visible,
+.nexxorra-app textarea:focus-visible,
+.nexxorra-app [tabindex]:focus-visible {
     outline: 2px solid var(--primary, #9CB080);
     outline-offset: 2px;
 }
@@ -2172,7 +2172,7 @@
 ========================================================= */
 
 @media (max-width: 760px) {
-    .nexora-shell {
+    .nexxorra-shell {
         display: block;
     }
 
@@ -2205,7 +2205,7 @@
         flex: 1;
     }
 
-    .nexora-symbol,
+    .nexxorra-symbol,
     .rail-separator,
     #chatViewButton,
     .rail-bottom .rail-action {
@@ -2241,7 +2241,7 @@
         transform: translateY(100%);
     }
 
-    .nexora-shell.memory-open .memory-tray {
+    .nexxorra-shell.memory-open .memory-tray {
         transform: translateY(0);
     }
 
@@ -2418,7 +2418,7 @@
         right: 12px;
     }
 
-    .nexora-modal {
+    .nexxorra-modal {
         align-items: end;
         padding: 10px;
     }
@@ -2494,9 +2494,9 @@
 ========================================================= */
 
 @media (prefers-reduced-motion: reduce) {
-    .nexora-app *,
-    .nexora-app *::before,
-    .nexora-app *::after {
+    .nexxorra-app *,
+    .nexxorra-app *::before,
+    .nexxorra-app *::after {
         scroll-behavior: auto !important;
         animation-duration: 0.01ms !important;
         animation-iteration-count: 1 !important;

@@ -1,5 +1,5 @@
 /* =========================================================
-   NEXORA AI — PUBLIC FRONTEND CONFIGURATION
+   nexxorra AI — PUBLIC FRONTEND CONFIGURATION
    File: config.js
 ========================================================= */
 
@@ -52,7 +52,7 @@ const SUPABASE_CONFIG = Object.freeze({
         flowType: "pkce",
 
         storageKey:
-            "nexora-auth-session"
+            "nexxorra-auth-session"
     }
 });
 
@@ -112,7 +112,7 @@ const API_CONFIG = Object.freeze({
 
     requestHeaders: {
         client:
-            "nexora-web",
+            "nexxorra-web",
 
         version:
             "1.0.0"
@@ -171,21 +171,21 @@ const CHAT_CONFIG = Object.freeze({
             id: "balanced",
             label: "Balanced",
             displayModel:
-                "Nexora Core"
+                "nexxorra Core"
         },
 
         fast: {
             id: "fast",
             label: "Fast",
             displayModel:
-                "Nexora Swift"
+                "nexxorra Swift"
         },
 
         deep: {
             id: "deep",
             label: "Deep",
             displayModel:
-                "Nexora Deep"
+                "nexxorra Deep"
         }
     },
 
@@ -233,25 +233,25 @@ const CHAT_CONFIG = Object.freeze({
 
 const STORAGE_KEYS = Object.freeze({
     theme:
-        "nexoraTheme",
+        "nexxorraTheme",
 
     responseMode:
-        "nexoraResponseMode",
+        "nexxorraResponseMode",
 
     guestId:
-        "nexoraGuestId",
+        "nexxorraGuestId",
 
     guestUsage:
-        "nexoraGuestUsage",
+        "nexxorraGuestUsage",
 
     guestConversations:
-        "nexoraGuestConversations",
+        "nexxorraGuestConversations",
 
     activeConversation:
-        "nexoraActiveConversation",
+        "nexxorraActiveConversation",
 
     authReturnPath:
-        "nexoraAuthReturnPath"
+        "nexxorraAuthReturnPath"
 });
 
 
@@ -302,9 +302,9 @@ const DEFAULT_USER_SETTINGS =
 ========================================================= */
 
 const APP_CONFIG = Object.freeze({
-    name: "Nexora AI",
+    name: "nexxorra AI",
 
-    shortName: "Nexora",
+    shortName: "nexxorra",
 
     version: "1.0.0",
 
@@ -314,7 +314,7 @@ const APP_CONFIG = Object.freeze({
     defaultLanguage: "en",
 
     supportEmail:
-        "support@nexora.ai",
+        "support@nexxorra.ai",
 
     routes: ROUTES,
 
@@ -530,7 +530,7 @@ export function logDevelopment(
         "development"
     ) {
         console.log(
-            "[Nexora]",
+            "[nexxorra]",
             ...values
         );
     }
@@ -544,7 +544,7 @@ export function warnDevelopment(
         "production"
     ) {
         console.warn(
-            "[Nexora]",
+            "[nexxorra]",
             ...values
         );
     }
@@ -555,7 +555,7 @@ export function warnDevelopment(
    17. FREEZE COMBINED CONFIGURATION
 ========================================================= */
 
-const NEXORA_CONFIG =
+const nexxorra_CONFIG =
     Object.freeze({
         app: APP_CONFIG,
 
@@ -618,4 +618,4 @@ export {
    19. DEFAULT EXPORT
 ========================================================= */
 
-export default NEXORA_CONFIG;
+export default nexxorra_CONFIG;

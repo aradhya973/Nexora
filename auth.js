@@ -1,5 +1,5 @@
 /* =========================================================
-   NEXORA AI — AUTHENTICATION CONTROLLER
+   nexxorra AI — AUTHENTICATION CONTROLLER
    File: auth.js
    Part 1: Core State, Session, Login, Signup and Google OAuth
 ========================================================= */
@@ -152,14 +152,14 @@ function getSupabase() {
 
 function getUserDisplayName(user) {
     if (!user) {
-        return "Nexora user";
+        return "nexxorra user";
     }
 
     return (
         user.user_metadata?.full_name ||
         user.user_metadata?.name ||
         user.email?.split("@")[0] ||
-        "Nexora user"
+        "nexxorra user"
     );
 }
 
@@ -169,7 +169,7 @@ function createAuthError(
 ) {
     const error = new Error(message);
 
-    error.name = "NexoraAuthError";
+    error.name = "nexxorraAuthError";
     error.code = code;
 
     return error;
@@ -687,7 +687,7 @@ function setAuthSession(session) {
 
     document.dispatchEvent(
         new CustomEvent(
-            "nexora:auth-session",
+            "nexxorra:auth-session",
             {
                 detail: {
                     event:
@@ -870,7 +870,7 @@ async function handleLoginSubmit(event) {
         messageId: "loginStatusMessage",
         title: "Logging in",
         message:
-            "Nexora is verifying your account.",
+            "nexxorra is verifying your account.",
         type: "info"
     });
 
@@ -1055,7 +1055,7 @@ async function handleSignupSubmit(event) {
         messageId: "signupStatusMessage",
         title: "Creating account",
         message:
-            "Nexora is preparing your private workspace.",
+            "nexxorra is preparing your private workspace.",
         type: "info"
     });
 
@@ -1096,7 +1096,7 @@ async function handleSignupSubmit(event) {
             messageId: "signupStatusMessage",
             title: "Account created",
             message:
-                "Your Nexora workspace is ready.",
+                "Your nexxorra workspace is ready.",
             type: "success"
         });
 
@@ -1248,7 +1248,7 @@ async function handleGoogleSignup() {
         messageId: "signupStatusMessage",
         title: "Opening Google",
         message:
-            "Choose the Google account for your Nexora workspace.",
+            "Choose the Google account for your nexxorra workspace.",
         type: "info"
     });
 
@@ -1614,7 +1614,7 @@ async function initializeAuthCore() {
         authState.loading = false;
 
         document.documentElement.classList.add(
-            "nexora-auth-core-ready"
+            "nexxorra-auth-core-ready"
         );
     }
 }
@@ -1662,7 +1662,7 @@ if (document.readyState === "loading") {
     initializeAuthCore();
 }
 /* =========================================================
-   NEXORA AI — AUTHENTICATION CONTROLLER
+   nexxorra AI — AUTHENTICATION CONTROLLER
    File: auth.js
    Part 2: Password Recovery and Password Update
 ========================================================= */
@@ -2029,7 +2029,7 @@ async function requestResetEmail(
                 "Sending recovery link",
 
             message:
-                "Nexora is preparing a secure password reset email.",
+                "nexxorra is preparing a secure password reset email.",
 
             type: "info"
         });
@@ -2665,7 +2665,7 @@ async function handleUpdatePasswordSubmit(
             "Updating password",
 
         message:
-            "Nexora is securely saving your new password.",
+            "nexxorra is securely saving your new password.",
 
         type: "info"
     });
@@ -2683,7 +2683,7 @@ async function handleUpdatePasswordSubmit(
 
         /*
            Keep the recovery session active so the user can
-           continue directly to Nexora.
+           continue directly to nexxorra.
         */
     } catch (error) {
         console.error(
@@ -3120,7 +3120,7 @@ async function initializePasswordRecovery() {
 
     document.documentElement
         .classList.add(
-            "nexora-password-recovery-ready"
+            "nexxorra-password-recovery-ready"
         );
 }
 
@@ -3141,7 +3141,7 @@ if (document.readyState === "loading") {
     initializePasswordRecovery();
 }
 /* =========================================================
-   NEXORA AI — AUTHENTICATION CONTROLLER
+   nexxorra AI — AUTHENTICATION CONTROLLER
    File: auth.js
    Part 3: Logout, Route Guards, Session Restore
            and Authentication State Synchronization
@@ -3265,7 +3265,7 @@ export async function logoutUser({
 
         document.dispatchEvent(
             new CustomEvent(
-                "nexora:logout",
+                "nexxorra:logout",
                 {
                     detail: {
                         redirect
@@ -3276,7 +3276,7 @@ export async function logoutUser({
 
         document.dispatchEvent(
             new CustomEvent(
-                "nexora:auth-session",
+                "nexxorra:auth-session",
                 {
                     detail: {
                         event:
@@ -3663,7 +3663,7 @@ async function processAuthStateChange(
 
     document.dispatchEvent(
         new CustomEvent(
-            "nexora:auth-session",
+            "nexxorra:auth-session",
             {
                 detail: {
                     event,
@@ -4298,7 +4298,7 @@ function updateAccountElements(
 ========================================================= */
 
 document.addEventListener(
-    "nexora:auth-session",
+    "nexxorra:auth-session",
     event => {
         updateAccountElements(
             event.detail?.user ||
@@ -4373,7 +4373,7 @@ async function initializeSessionManagement() {
 
     document.documentElement
         .classList.add(
-            "nexora-auth-session-ready"
+            "nexxorra-auth-session-ready"
         );
 }
 
@@ -4409,7 +4409,7 @@ if (document.readyState === "loading") {
 }
 
 /* =========================================================
-   NEXORA AI — AUTHENTICATION CONTROLLER
+   nexxorra AI — AUTHENTICATION CONTROLLER
    File: auth.js
    Part 4: Password Visibility, Password Strength,
            Real-Time Validation and Accessibility
@@ -6433,7 +6433,7 @@ function initializeAuthUIEnhancements() {
 
     document.documentElement
         .classList.add(
-            "nexora-auth-ui-ready"
+            "nexxorra-auth-ui-ready"
         );
 }
 
@@ -6480,7 +6480,7 @@ if (document.readyState === "loading") {
     initializeAuthUIEnhancements();
 }
 /* =========================================================
-   NEXORA AI — AUTHENTICATION CONTROLLER
+   nexxorra AI — AUTHENTICATION CONTROLLER
    File: auth.js
    Part 5: Final Error Handling, Toasts, Cleanup,
            Session Utilities and Stable Initialization
@@ -6668,7 +6668,7 @@ function normalizeAuthError(error) {
     ) {
         code = "network_error";
         message =
-            "Nexora could not reach the authentication server.";
+            "nexxorra could not reach the authentication server.";
         retryable = true;
     } else if (
         normalizedMessage.includes(
@@ -6706,7 +6706,7 @@ function normalizeAuthError(error) {
     return {
         name:
             error.name ||
-            "NexoraAuthError",
+            "nexxorraAuthError",
 
         code,
 
@@ -6771,7 +6771,7 @@ export function getFinalAuthErrorMessage(
 ========================================================= */
 
 export function showAuthToast({
-    title = "Nexora",
+    title = "nexxorra",
     message = "",
     type = "info",
     duration = 3600
@@ -6992,7 +6992,7 @@ export function displayAuthError(
         normalized;
 
     console.error(
-        "[Nexora Auth]",
+        "[nexxorra Auth]",
         normalized.code,
         error
     );
@@ -7630,7 +7630,7 @@ function bindInvalidFormHandling() {
 function dispatchAuthReadyEvent() {
     document.dispatchEvent(
         new CustomEvent(
-            "nexora:auth-ready",
+            "nexxorra:auth-ready",
             {
                 detail: {
                     user:
@@ -7668,7 +7668,7 @@ function synchronizeFinalAccountUI() {
 
     document.documentElement
         .classList.toggle(
-            "nexora-user-authenticated",
+            "nexxorra-user-authenticated",
             Boolean(
                 authState.user
             )
@@ -7676,7 +7676,7 @@ function synchronizeFinalAccountUI() {
 
     document.documentElement
         .classList.toggle(
-            "nexora-user-guest",
+            "nexxorra-user-guest",
             !authState.user
         );
 }
@@ -7698,7 +7698,7 @@ function bindFinalAuthenticationEvents() {
     );
 
     document.addEventListener(
-        "nexora:auth-session",
+        "nexxorra:auth-session",
         event => {
             authState.session =
                 event.detail
@@ -7717,7 +7717,7 @@ function bindFinalAuthenticationEvents() {
     );
 
     document.addEventListener(
-        "nexora:logout",
+        "nexxorra:logout",
         () => {
             authState.session = null;
             authState.user = null;
@@ -7749,7 +7749,7 @@ function bindFinalAuthenticationEvents() {
                     "supabase"
                 ) ||
                 error?.name ===
-                    "NexoraAuthError";
+                    "nexxorraAuthError";
 
             if (!appearsAuthRelated) {
                 return;
@@ -7823,13 +7823,13 @@ function applyAuthenticationPageState() {
 
     document.documentElement
         .classList.toggle(
-            "nexora-auth-online",
+            "nexxorra-auth-online",
             finalAuthState.online
         );
 
     document.documentElement
         .classList.toggle(
-            "nexora-auth-offline",
+            "nexxorra-auth-offline",
             !finalAuthState.online
         );
 
@@ -7923,7 +7923,7 @@ async function initializeFinalAuthenticationLayer() {
 
                 document.documentElement
                     .classList.add(
-                        "nexora-auth-config-error"
+                        "nexxorra-auth-config-error"
                     );
 
                 return;
@@ -7981,7 +7981,7 @@ async function initializeFinalAuthenticationLayer() {
 
             document.documentElement
                 .classList.add(
-                    "nexora-auth-ready"
+                    "nexxorra-auth-ready"
                 );
         })();
 
@@ -8004,7 +8004,7 @@ window.addEventListener(
    148. FINAL PUBLIC AUTH API
 ========================================================= */
 
-const NexoraAuth =
+const nexxorraAuth =
     Object.freeze({
         login:
             loginWithEmail,
@@ -8060,7 +8060,7 @@ const NexoraAuth =
    149. DEFAULT EXPORT
 ========================================================= */
 
-export default NexoraAuth;
+export default nexxorraAuth;
 
 
 /* =========================================================

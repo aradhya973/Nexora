@@ -1,5 +1,5 @@
 /* =========================================================
-   NEXORA AI — CHAT API CLIENT
+   nexxorra AI — CHAT API CLIENT
    File: chat.js
    Part 1: Configuration, Validation, Request Builder,
            Authentication and Fetch Layer
@@ -68,7 +68,7 @@ const CHAT_CONFIG = Object.freeze({
    2. CUSTOM CHAT ERROR
 ========================================================= */
 
-export class NexoraChatError extends Error {
+export class nexxorraChatError extends Error {
     constructor(
         message,
         {
@@ -81,7 +81,7 @@ export class NexoraChatError extends Error {
     ) {
         super(message);
 
-        this.name = "NexoraChatError";
+        this.name = "nexxorraChatError";
         this.code = code;
         this.status = status;
         this.statusCode = status;
@@ -225,7 +225,7 @@ function normalizeResponseMode(mode) {
 
 function normalizeMessage(message, index) {
     if (!isPlainObject(message)) {
-        throw new NexoraChatError(
+        throw new nexxorraChatError(
             `Message ${index + 1} is invalid.`,
             {
                 code: "invalid_message"
@@ -242,7 +242,7 @@ function normalizeMessage(message, index) {
     if (
         !CHAT_CONFIG.allowedRoles.includes(role)
     ) {
-        throw new NexoraChatError(
+        throw new nexxorraChatError(
             `Message ${index + 1} has an unsupported role.`,
             {
                 code: "invalid_message_role"
@@ -255,7 +255,7 @@ function normalizeMessage(message, index) {
     );
 
     if (!content) {
-        throw new NexoraChatError(
+        throw new nexxorraChatError(
             `Message ${index + 1} has no content.`,
             {
                 code: "empty_message"
@@ -267,7 +267,7 @@ function normalizeMessage(message, index) {
         content.length >
         CHAT_CONFIG.request.maximumMessageLength
     ) {
-        throw new NexoraChatError(
+        throw new nexxorraChatError(
             `Message ${index + 1} is too long.`,
             {
                 code: "message_too_long",
@@ -288,7 +288,7 @@ function normalizeMessage(message, index) {
 
 function normalizeMessages(messages) {
     if (!Array.isArray(messages)) {
-        throw new NexoraChatError(
+        throw new nexxorraChatError(
             "Conversation messages must be an array.",
             {
                 code: "invalid_messages"
@@ -297,7 +297,7 @@ function normalizeMessages(messages) {
     }
 
     if (messages.length === 0) {
-        throw new NexoraChatError(
+        throw new nexxorraChatError(
             "At least one message is required.",
             {
                 code: "empty_conversation"
@@ -329,7 +329,7 @@ function normalizeMessages(messages) {
         totalCharacters >
         CHAT_CONFIG.request.maximumTotalCharacters
     ) {
-        throw new NexoraChatError(
+        throw new nexxorraChatError(
             "The conversation context is too large.",
             {
                 code: "context_too_large",
@@ -355,7 +355,7 @@ function normalizeMessages(messages) {
 
 function validateAttachmentFile(file) {
     if (!isFile(file)) {
-        throw new NexoraChatError(
+        throw new nexxorraChatError(
             "An attachment is not a valid browser file.",
             {
                 code: "invalid_attachment"
@@ -372,7 +372,7 @@ function validateAttachmentFile(file) {
             .allowedAttachmentExtensions
             .includes(extension)
     ) {
-        throw new NexoraChatError(
+        throw new nexxorraChatError(
             `${file.name} is not a supported file type.`,
             {
                 code:
@@ -391,7 +391,7 @@ function validateAttachmentFile(file) {
         CHAT_CONFIG.request
             .maximumAttachmentSize
     ) {
-        throw new NexoraChatError(
+        throw new nexxorraChatError(
             `${file.name} exceeds the attachment size limit.`,
             {
                 code:
@@ -431,7 +431,7 @@ function normalizeAttachmentFiles(
         CHAT_CONFIG.request
             .maximumAttachments
     ) {
-        throw new NexoraChatError(
+        throw new nexxorraChatError(
             `A maximum of ${CHAT_CONFIG.request.maximumAttachments} attachments is allowed.`,
             {
                 code: "too_many_attachments"
@@ -451,7 +451,7 @@ function normalizeAttachmentFiles(
 
 export function validateChatPayload(payload) {
     if (!isPlainObject(payload)) {
-        throw new NexoraChatError(
+        throw new nexxorraChatError(
             "The chat request is invalid.",
             {
                 code: "invalid_payload"
@@ -662,12 +662,12 @@ async function createRequestHeaders({
     );
 
     headers.set(
-        "X-Nexora-Request-ID",
+        "X-nexxorra-Request-ID",
         requestId || createRequestId()
     );
 
     headers.set(
-        "X-Nexora-Client",
+        "X-nexxorra-Client",
         "web"
     );
 
@@ -733,7 +733,7 @@ function createSerializablePayload(
                     .length,
 
             client:
-                "nexora-web",
+                "nexxorra-web",
 
             clientTimestamp:
                 new Date()
@@ -918,7 +918,7 @@ function createRequestSignal({
         timeoutId = window.setTimeout(
             () => {
                 timeoutController.abort(
-                    new NexoraChatError(
+                    new nexxorraChatError(
                         "The AI request timed out.",
                         {
                             code:
@@ -1106,7 +1106,7 @@ function getHTTPErrorDetails(
         return {
             code: "endpoint_not_found",
             message:
-                "The Nexora chat endpoint was not found.",
+                "The nexxorra chat endpoint was not found.",
             retryable: false
         };
     }
@@ -1191,7 +1191,7 @@ async function ensureSuccessfulResponse(
         errorResponse.data?.code ||
         mappedError.code;
 
-    throw new NexoraChatError(
+    throw new nexxorraChatError(
         errorResponse.message ||
             mappedError.message,
         {
@@ -1222,7 +1222,7 @@ function normalizeFetchError(error) {
     }
 
     if (
-        error instanceof NexoraChatError
+        error instanceof nexxorraChatError
     ) {
         return error;
     }
@@ -1230,8 +1230,8 @@ function normalizeFetchError(error) {
     if (
         error instanceof TypeError
     ) {
-        return new NexoraChatError(
-            "Nexora could not connect to the AI service.",
+        return new nexxorraChatError(
+            "nexxorra could not connect to the AI service.",
             {
                 code: "network_error",
                 retryable: true,
@@ -1240,7 +1240,7 @@ function normalizeFetchError(error) {
         );
     }
 
-    return new NexoraChatError(
+    return new nexxorraChatError(
         error?.message ||
             "The AI request failed.",
         {
@@ -1453,7 +1453,7 @@ export async function executeChatFetch(
 
     throw (
         latestError ||
-        new NexoraChatError(
+        new nexxorraChatError(
             "The AI request could not be completed.",
             {
                 code:
@@ -1472,7 +1472,7 @@ export async function readJSONChatResponse(
     response
 ) {
     if (!response) {
-        throw new NexoraChatError(
+        throw new nexxorraChatError(
             "The AI server returned no response.",
             {
                 code: "missing_response"
@@ -1484,7 +1484,7 @@ export async function readJSONChatResponse(
         await response.text();
 
     if (!text.trim()) {
-        throw new NexoraChatError(
+        throw new nexxorraChatError(
             "The AI server returned an empty response.",
             {
                 code: "empty_response"
@@ -1499,7 +1499,7 @@ export async function readJSONChatResponse(
         );
 
     if (!parsed) {
-        throw new NexoraChatError(
+        throw new nexxorraChatError(
             "The AI response was not valid JSON.",
             {
                 code: "invalid_json_response",
@@ -1530,7 +1530,7 @@ export function normalizeChatResponseData(
     }
 
     if (!isPlainObject(data)) {
-        throw new NexoraChatError(
+        throw new nexxorraChatError(
             "The AI response has an invalid structure.",
             {
                 code:
@@ -1545,7 +1545,7 @@ export function normalizeChatResponseData(
                 ? data.error
                 : data.error.message;
 
-        throw new NexoraChatError(
+        throw new nexxorraChatError(
             errorMessage ||
                 "The AI request failed.",
             {
@@ -1587,7 +1587,7 @@ export function normalizeChatResponseData(
     if (
         !normalizedContent.trim()
     ) {
-        throw new NexoraChatError(
+        throw new nexxorraChatError(
             "The AI server returned an empty response.",
             {
                 code: "empty_response"
@@ -1696,7 +1696,7 @@ export {
 };
 
 /* =========================================================
-   NEXORA AI — CHAT API CLIENT
+   nexxorra AI — CHAT API CLIENT
    File: chat.js
    Part 2: Streaming Parser, SSE Handling and Stream Lifecycle
 ========================================================= */
@@ -1943,7 +1943,7 @@ function createStreamError(data) {
     }
 
     if (typeof data === "string") {
-        return new NexoraChatError(
+        return new nexxorraChatError(
             data ||
                 "The AI stream failed.",
             {
@@ -1956,7 +1956,7 @@ function createStreamError(data) {
     const errorData =
         data?.error || data || {};
 
-    return new NexoraChatError(
+    return new nexxorraChatError(
         errorData.message ||
             errorData.detail ||
             "The AI stream failed.",
@@ -2356,7 +2356,7 @@ function processStreamEvent(
 
 function ensureReadableBody(response) {
     if (!response?.body) {
-        throw new NexoraChatError(
+        throw new nexxorraChatError(
             "The AI server returned no readable stream.",
             {
                 code:
@@ -2369,7 +2369,7 @@ function ensureReadableBody(response) {
         typeof response.body
             .getReader !== "function"
     ) {
-        throw new NexoraChatError(
+        throw new nexxorraChatError(
             "Streaming is not supported by this browser response.",
             {
                 code:
@@ -2532,7 +2532,7 @@ export async function readSSEChatResponse(
         if (
             !streamState.content.trim()
         ) {
-            throw new NexoraChatError(
+            throw new nexxorraChatError(
                 "The AI stream returned no response content.",
                 {
                     code:
@@ -2589,12 +2589,12 @@ export async function readSSEChatResponse(
 
         if (
             error instanceof
-            NexoraChatError
+            nexxorraChatError
         ) {
             throw error;
         }
 
-        throw new NexoraChatError(
+        throw new nexxorraChatError(
             error?.message ||
                 "The AI stream could not be read.",
             {
@@ -2713,7 +2713,7 @@ export async function readTextChatStream(
         }
 
         if (!content.trim()) {
-            throw new NexoraChatError(
+            throw new nexxorraChatError(
                 "The AI stream returned no text.",
                 {
                     code:
@@ -2739,12 +2739,12 @@ export async function readTextChatStream(
 
         if (
             error instanceof
-            NexoraChatError
+            nexxorraChatError
         ) {
             throw error;
         }
 
-        throw new NexoraChatError(
+        throw new nexxorraChatError(
             error?.message ||
                 "The text stream could not be read.",
             {
@@ -3019,7 +3019,7 @@ export async function readJSONLineChatStream(
         if (
             !streamState.content.trim()
         ) {
-            throw new NexoraChatError(
+            throw new nexxorraChatError(
                 "The AI JSON stream returned no content.",
                 {
                     code:
@@ -3076,12 +3076,12 @@ export async function readJSONLineChatStream(
 
         if (
             error instanceof
-            NexoraChatError
+            nexxorraChatError
         ) {
             throw error;
         }
 
-        throw new NexoraChatError(
+        throw new nexxorraChatError(
             error?.message ||
                 "The AI JSON stream could not be read.",
             {
@@ -3358,12 +3358,12 @@ export async function streamChatResponse(
 
         if (
             error instanceof
-            NexoraChatError
+            nexxorraChatError
         ) {
             throw error;
         }
 
-        throw new NexoraChatError(
+        throw new nexxorraChatError(
             error?.message ||
                 "The streaming AI request failed.",
             {
@@ -3448,7 +3448,7 @@ export async function requestAIResponse(
             }
 
             console.warn(
-                "Streaming failed. Nexora is using a complete response fallback.",
+                "Streaming failed. nexxorra is using a complete response fallback.",
                 error
             );
         }
@@ -3586,7 +3586,7 @@ export {
     routeStreamingResponse
 };
 /* =========================================================
-   NEXORA AI — CHAT API CLIENT
+   nexxorra AI — CHAT API CLIENT
    File: chat.js
    Part 3: Request Queue, Duplicate Prevention, Retry,
            Attachment Utilities, Diagnostics and Final API
@@ -3971,7 +3971,7 @@ function ensureOnline() {
     if (
         !chatClientState.online
     ) {
-        throw new NexoraChatError(
+        throw new nexxorraChatError(
             "You are currently offline.",
             {
                 code: "offline",
@@ -4060,7 +4060,7 @@ export async function withChatRetry(
         typeof callback !==
         "function"
     ) {
-        throw new NexoraChatError(
+        throw new nexxorraChatError(
             "A retry callback is required.",
             {
                 code:
@@ -4089,7 +4089,7 @@ export async function withChatRetry(
         } catch (error) {
             latestError =
                 error instanceof
-                NexoraChatError
+                nexxorraChatError
                     ? error
                     : normalizeFetchError(
                           error
@@ -4133,7 +4133,7 @@ export async function withChatRetry(
 
     throw (
         latestError ||
-        new NexoraChatError(
+        new nexxorraChatError(
             "The request could not be retried.",
             {
                 code:
@@ -4252,7 +4252,7 @@ export function clearChatQueue() {
     queuedRequests.forEach(
         queuedRequest => {
             queuedRequest.reject(
-                new NexoraChatError(
+                new nexxorraChatError(
                     "The queued request was cancelled.",
                     {
                         code:
@@ -4290,7 +4290,7 @@ export async function requestChat({
         preventDuplicates &&
         isDuplicateRequest(payload)
     ) {
-        throw new NexoraChatError(
+        throw new nexxorraChatError(
             "This message was already sent.",
             {
                 code:
@@ -4529,7 +4529,7 @@ export async function readTextAttachment(
             extension
         )
     ) {
-        throw new NexoraChatError(
+        throw new nexxorraChatError(
             "Only TXT and Markdown files can be read directly in the browser.",
             {
                 code:
@@ -4567,7 +4567,7 @@ export async function readTextAttachment(
                 content.length
         };
     } catch (error) {
-        throw new NexoraChatError(
+        throw new nexxorraChatError(
             `Could not read ${file.name}.`,
             {
                 code:
@@ -4602,7 +4602,7 @@ export function createImagePreviewURL(
             "webp"
         ].includes(extension)
     ) {
-        throw new NexoraChatError(
+        throw new nexxorraChatError(
             "The selected file is not a supported image.",
             {
                 code:
@@ -4899,7 +4899,7 @@ export function getChatErrorMessage(
             "You are offline. Check your connection.",
 
         network_error:
-            "Nexora could not connect to the server.",
+            "nexxorra could not connect to the server.",
 
         request_timeout:
             "The AI request took too long.",
@@ -4935,7 +4935,7 @@ export function getChatErrorMessage(
     return (
         messages[code] ||
         error?.message ||
-        "Nexora could not complete the request."
+        "nexxorra could not complete the request."
     );
 }
 
@@ -4945,7 +4945,7 @@ export function getChatErrorMessage(
 ========================================================= */
 
 document.addEventListener(
-    "nexora:auth-session",
+    "nexxorra:auth-session",
     event => {
         const accessToken =
             event.detail
@@ -4964,7 +4964,7 @@ document.addEventListener(
 );
 
 document.addEventListener(
-    "nexora:logout",
+    "nexxorra:logout",
     () => {
         clearChatAccessToken();
         cancelAllChatRequests();
@@ -5007,7 +5007,7 @@ window.addEventListener(
    79. DEFAULT CLIENT API
 ========================================================= */
 
-const NexoraChatClient =
+const nexxorraChatClient =
     Object.freeze({
         request:
             requestChat,
@@ -5066,4 +5066,4 @@ const NexoraChatClient =
    80. DEFAULT EXPORT
 ========================================================= */
 
-export default NexoraChatClient;
+export default nexxorraChatClient;
