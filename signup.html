@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="Create a Nexora AI account to save conversations, sync preferences, and access your AI workspace across devices."
+    >
+
+    <meta
+        name="theme-color"
+        content="#273338"
+    >
+
+    <title>Create Account — Nexora AI</title>
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="nex.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="auth.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="responsive.css"
+    >
+</head>
+
+<body class="auth-page">
+    <noscript class="noscript-alert">
+        JavaScript is required to create a Nexora AI account.
+    </noscript>
+
+    <main class="auth-shell">
+
+        <!-- =========================================
+             LEFT BRAND PANEL
+        ========================================== -->
+
+        <section
+            class="auth-brand-panel"
+            aria-labelledby="signupPageTitle"
+        >
+            <header class="auth-brand-header">
+                <a
+                    class="auth-brand"
+                    href="index.html"
+                    aria-label="Nexora AI home"
+                >
+                    <span class="auth-brand-symbol">
+                        <span class="auth-symbol-line auth-symbol-line-one"></span>
+                        <span class="auth-symbol-line auth-symbol-line-two"></span>
+                        <span class="auth-symbol-core"></span>
+                    </span>
+
+                    <span class="auth-brand-name">
+                        Nexora AI
+                    </span>
+                </a>
+
+                <a
+                    class="auth-back-link"
+                    href="index.html"
+                >
+                    <i
+                        class="fa-solid fa-arrow-left"
+                        aria-hidden="true"
+                    ></i>
+
+                    Back to chat
+                </a>
+            </header>
+
+            <div class="auth-brand-content">
+                <div class="auth-section-label">
+                    <span>02</span>
+                    <span class="auth-label-line"></span>
+                    <span>Create workspace</span>
+                </div>
+
+                <h1 id="signupPageTitle">
+                    Build your own
+                    <span>intelligence space.</span>
+                </h1>
+
+                <p>
+                    Create a Nexora account to save conversations,
+                    manage your preferences, and continue your work
+                    from any supported device.
+                </p>
+
+                <div class="auth-benefit-list">
+                    <article class="auth-benefit-item">
+                        <span class="auth-benefit-number">
+                            01
+                        </span>
+
+                        <div>
+                            <strong>
+                                Persistent chat history
+                            </strong>
+
+                            <p>
+                                Reopen and continue important conversations.
+                            </p>
+                        </div>
+                    </article>
+
+                    <article class="auth-benefit-item">
+                        <span class="auth-benefit-number">
+                            02
+                        </span>
+
+                        <div>
+                            <strong>
+                                Personalized responses
+                            </strong>
+
+                            <p>
+                                Save response modes, theme, and language.
+                            </p>
+                        </div>
+                    </article>
+
+                    <article class="auth-benefit-item">
+                        <span class="auth-benefit-number">
+                            03
+                        </span>
+
+                        <div>
+                            <strong>
+                                Secure private records
+                            </strong>
+
+                            <p>
+                                Row-level security keeps your data isolated.
+                            </p>
+                        </div>
+                    </article>
+                </div>
+            </div>
+
+            <footer class="auth-brand-footer">
+                <span class="auth-security-indicator">
+                    <span></span>
+                    Protected account creation
+                </span>
+
+                <nav aria-label="Legal links">
+                    <a href="privacy.html">Privacy</a>
+                    <a href="terms.html">Terms</a>
+                    <a href="help.html">Help</a>
+                </nav>
+            </footer>
+        </section>
+
+        <!-- =========================================
+             SIGNUP PANEL
+        ========================================== -->
+
+        <section class="auth-form-panel">
+            <div class="auth-form-container">
+                <header class="auth-form-header">
+                    <span class="auth-form-kicker">
+                        Start with Nexora
+                    </span>
+
+                    <h2>
+                        Create your account
+                    </h2>
+
+                    <p>
+                        Enter your details to create a private AI workspace.
+                    </p>
+                </header>
+
+                <!-- STATUS MESSAGE -->
+
+                <div
+                    class="auth-status"
+                    id="signupStatus"
+                    role="status"
+                    aria-live="polite"
+                    hidden
+                >
+                    <span class="auth-status-icon">
+                        <i
+                            class="fa-solid fa-circle-info"
+                            aria-hidden="true"
+                        ></i>
+                    </span>
+
+                    <div>
+                        <strong id="signupStatusTitle">
+                            Signup status
+                        </strong>
+
+                        <p id="signupStatusMessage"></p>
+                    </div>
+                </div>
+
+                <!-- GOOGLE SIGNUP -->
+
+                <button
+                    class="oauth-button"
+                    id="googleSignupButton"
+                    type="button"
+                >
+                    <span class="oauth-icon">
+                        <svg
+                            viewBox="0 0 24 24"
+                            aria-hidden="true"
+                        >
+                            <path
+                                fill="#4285F4"
+                                d="M21.6 12.23c0-.71-.06-1.39-.18-2.04H12v3.86h5.38a4.6 4.6 0 0 1-2 3.02v2.51h3.24c1.9-1.75 2.98-4.33 2.98-7.35Z"
+                            />
+
+                            <path
+                                fill="#34A853"
+                                d="M12 22c2.7 0 4.97-.9 6.62-2.42l-3.24-2.51c-.9.6-2.05.96-3.38.96-2.61 0-4.82-1.76-5.61-4.13H3.04v2.59A10 10 0 0 0 12 22Z"
+                            />
+
+                            <path
+                                fill="#FBBC05"
+                                d="M6.39 13.9A6.02 6.02 0 0 1 6.08 12c0-.66.11-1.3.31-1.9V7.51H3.04A10 10 0 0 0 2 12c0 1.61.38 3.13 1.04 4.49l3.35-2.59Z"
+                            />
+
+                            <path
+                                fill="#EA4335"
+                                d="M12 5.97c1.47 0 2.8.51 3.84 1.5l2.88-2.88C16.97 2.96 14.7 2 12 2a10 10 0 0 0-8.96 5.51l3.35 2.59C7.18 7.73 9.39 5.97 12 5.97Z"
+                            />
+                        </svg>
+                    </span>
+
+                    <span>
+                        Sign up with Google
+                    </span>
+
+                    <i
+                        class="fa-solid fa-arrow-right"
+                        aria-hidden="true"
+                    ></i>
+                </button>
+
+                <div
+                    class="auth-divider"
+                    aria-hidden="true"
+                >
+                    <span></span>
+                    <small>or use email</small>
+                    <span></span>
+                </div>
+
+                <!-- SIGNUP FORM -->
+
+                <form
+                    class="auth-form"
+                    id="signupForm"
+                    novalidate
+                >
+                    <div class="auth-field">
+                        <label for="signupFullName">
+                            Full name
+                        </label>
+
+                        <div class="auth-input-wrapper">
+                            <span class="auth-input-icon">
+                                <i
+                                    class="fa-regular fa-user"
+                                    aria-hidden="true"
+                                ></i>
+                            </span>
+
+                            <input
+                                id="signupFullName"
+                                name="fullName"
+                                type="text"
+                                autocomplete="name"
+                                placeholder="Enter your full name"
+                                minlength="2"
+                                maxlength="100"
+                                aria-describedby="signupFullNameError"
+                                required
+                            >
+                        </div>
+
+                        <span
+                            class="auth-field-error"
+                            id="signupFullNameError"
+                            aria-live="polite"
+                        ></span>
+                    </div>
+
+                    <div class="auth-field">
+                        <label for="signupEmail">
+                            Email address
+                        </label>
+
+                        <div class="auth-input-wrapper">
+                            <span class="auth-input-icon">
+                                <i
+                                    class="fa-regular fa-envelope"
+                                    aria-hidden="true"
+                                ></i>
+                            </span>
+
+                            <input
+                                id="signupEmail"
+                                name="email"
+                                type="email"
+                                inputmode="email"
+                                autocomplete="email"
+                                placeholder="you@example.com"
+                                maxlength="254"
+                                aria-describedby="signupEmailError"
+                                required
+                            >
+                        </div>
+
+                        <span
+                            class="auth-field-error"
+                            id="signupEmailError"
+                            aria-live="polite"
+                        ></span>
+                    </div>
+
+                    <div class="auth-field">
+                        <label for="signupPassword">
+                            Password
+                        </label>
+
+                        <div class="auth-input-wrapper">
+                            <span class="auth-input-icon">
+                                <i
+                                    class="fa-solid fa-lock"
+                                    aria-hidden="true"
+                                ></i>
+                            </span>
+
+                            <input
+                                id="signupPassword"
+                                name="password"
+                                type="password"
+                                autocomplete="new-password"
+                                placeholder="Create a strong password"
+                                minlength="8"
+                                maxlength="128"
+                                aria-describedby="signupPasswordError signupPasswordStrength"
+                                required
+                            >
+
+                            <button
+                                class="password-toggle-button"
+                                id="signupPasswordToggle"
+                                type="button"
+                                aria-label="Show password"
+                                aria-pressed="false"
+                            >
+                                <i
+                                    class="fa-regular fa-eye"
+                                    aria-hidden="true"
+                                ></i>
+                            </button>
+                        </div>
+
+                        <span
+                            class="auth-field-error"
+                            id="signupPasswordError"
+                            aria-live="polite"
+                        ></span>
+
+                        <div
+                            class="password-strength"
+                            id="signupPasswordStrength"
+                            data-strength="empty"
+                        >
+                            <div
+                                class="password-strength-bars"
+                                aria-hidden="true"
+                            >
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </div>
+
+                            <span
+                                class="password-strength-text"
+                                id="signupPasswordStrengthText"
+                            >
+                                Use at least 8 characters.
+                            </span>
+                        </div>
+
+                        <ul
+                            class="password-requirements"
+                            aria-label="Password requirements"
+                        >
+                            <li
+                                class="password-requirement"
+                                id="passwordLengthRequirement"
+                            >
+                                <i
+                                    class="fa-solid fa-circle"
+                                    aria-hidden="true"
+                                ></i>
+
+                                At least 8 characters
+                            </li>
+
+                            <li
+                                class="password-requirement"
+                                id="passwordUppercaseRequirement"
+                            >
+                                <i
+                                    class="fa-solid fa-circle"
+                                    aria-hidden="true"
+                                ></i>
+
+                                One uppercase letter
+                            </li>
+
+                            <li
+                                class="password-requirement"
+                                id="passwordLowercaseRequirement"
+                            >
+                                <i
+                                    class="fa-solid fa-circle"
+                                    aria-hidden="true"
+                                ></i>
+
+                                One lowercase letter
+                            </li>
+
+                            <li
+                                class="password-requirement"
+                                id="passwordNumberRequirement"
+                            >
+                                <i
+                                    class="fa-solid fa-circle"
+                                    aria-hidden="true"
+                                ></i>
+
+                                One number
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="auth-field">
+                        <label for="signupConfirmPassword">
+                            Confirm password
+                        </label>
+
+                        <div class="auth-input-wrapper">
+                            <span class="auth-input-icon">
+                                <i
+                                    class="fa-solid fa-shield-halved"
+                                    aria-hidden="true"
+                                ></i>
+                            </span>
+
+                            <input
+                                id="signupConfirmPassword"
+                                name="confirmPassword"
+                                type="password"
+                                autocomplete="new-password"
+                                placeholder="Enter the password again"
+                                minlength="8"
+                                maxlength="128"
+                                aria-describedby="signupConfirmPasswordError"
+                                required
+                            >
+
+                            <button
+                                class="password-toggle-button"
+                                id="signupConfirmPasswordToggle"
+                                type="button"
+                                aria-label="Show confirmation password"
+                                aria-pressed="false"
+                            >
+                                <i
+                                    class="fa-regular fa-eye"
+                                    aria-hidden="true"
+                                ></i>
+                            </button>
+                        </div>
+
+                        <span
+                            class="auth-field-error"
+                            id="signupConfirmPasswordError"
+                            aria-live="polite"
+                        ></span>
+                    </div>
+
+                    <div class="auth-form-options">
+                        <label class="auth-checkbox">
+                            <input
+                                id="acceptTerms"
+                                name="acceptTerms"
+                                type="checkbox"
+                                required
+                            >
+
+                            <span class="auth-checkbox-box">
+                                <i
+                                    class="fa-solid fa-check"
+                                    aria-hidden="true"
+                                ></i>
+                            </span>
+
+                            <span>
+                                I agree to the
+                                <a href="terms.html">Terms</a>
+                                and
+                                <a href="privacy.html">Privacy Policy</a>
+                            </span>
+                        </label>
+                    </div>
+
+                    <button
+                        class="auth-submit-button"
+                        id="signupSubmitButton"
+                        type="submit"
+                    >
+                        <span class="auth-submit-text">
+                            Create account
+                        </span>
+
+                        <span
+                            class="auth-submit-loader"
+                            aria-hidden="true"
+                            hidden
+                        ></span>
+
+                        <i
+                            class="fa-solid fa-arrow-right"
+                            aria-hidden="true"
+                        ></i>
+                    </button>
+                </form>
+
+                <p class="auth-switch-text">
+                    Already have an account?
+
+                    <a href="login.html">
+                        Log in
+                    </a>
+                </p>
+
+                <div class="auth-guest-option">
+                    <span></span>
+
+                    <a href="index.html">
+                        Continue in guest mode
+                    </a>
+
+                    <span></span>
+                </div>
+            </div>
+
+            <footer class="auth-mobile-footer">
+                <a href="privacy.html">Privacy</a>
+                <a href="terms.html">Terms</a>
+                <a href="contact.html">Contact</a>
+            </footer>
+        </section>
+    </main>
+
+    <!-- =========================================
+         PAGE LOADER
+    ========================================== -->
+
+    <div
+        class="auth-page-loader"
+        id="authPageLoader"
+        role="status"
+        aria-live="polite"
+        hidden
+    >
+        <span class="auth-page-spinner"></span>
+
+        <span id="authPageLoaderText">
+            Creating your workspace
+        </span>
+    </div>
+
+    <!-- =========================================
+         TOAST REGION
+    ========================================== -->
+
+    <div
+        class="toast-region"
+        id="toastRegion"
+        aria-live="polite"
+        aria-atomic="true"
+    ></div>
+
+    <script
+        type="module"
+        src="config.js"
+    ></script>
+
+    <script
+        type="module"
+        src="supabase.js"
+    ></script>
+
+    <script
+        type="module"
+        src="auth.js"
+    ></script>
+</body>
+</html>

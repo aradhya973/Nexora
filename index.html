@@ -1,0 +1,1455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="Nexora AI is a premium AI workspace for questions, ideas, writing, coding, and problem solving."
+    >
+
+    <meta
+        name="theme-color"
+        content="#273338"
+    >
+
+    <title>Nexora AI — Intelligent Workspace</title>
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    >
+
+    <link rel="stylesheet" href="nex.css">
+
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="stylesheet" href="responsive.css">
+</head>
+
+<body class="nexora-app">
+    <noscript class="noscript-alert">
+        JavaScript is required to use Nexora AI.
+    </noscript>
+
+    <a
+        class="skip-link"
+        href="#chatCanvas"
+    >
+        Skip to conversation
+    </a>
+
+    <div
+        class="nexora-shell"
+        id="nexoraShell"
+    >
+
+        <!-- =========================================
+             LEFT COMMAND RAIL
+        ========================================== -->
+
+        <aside
+            class="command-rail"
+            id="commandRail"
+            aria-label="Nexora command navigation"
+        >
+            <div class="rail-top">
+                <a
+                    class="nexora-symbol"
+                    href="index.html"
+                    aria-label="Nexora AI home"
+                >
+                    <span class="symbol-frame">
+                        <span class="symbol-line symbol-line-one"></span>
+                        <span class="symbol-line symbol-line-two"></span>
+                        <span class="symbol-core"></span>
+                    </span>
+                </a>
+
+                <button
+                    class="rail-action rail-new-chat"
+                    id="newChatButton"
+                    type="button"
+                    aria-label="Start new conversation"
+                    data-label="New chat"
+                >
+                    <i
+                        class="fa-solid fa-plus"
+                        aria-hidden="true"
+                    ></i>
+                </button>
+
+                <div
+                    class="rail-separator"
+                    aria-hidden="true"
+                ></div>
+
+                <button
+                    class="rail-action active"
+                    id="chatViewButton"
+                    type="button"
+                    aria-label="Open current conversation"
+                    data-label="Conversation"
+                    aria-current="page"
+                >
+                    <i
+                        class="fa-regular fa-message"
+                        aria-hidden="true"
+                    ></i>
+                </button>
+
+                <button
+                    class="rail-action"
+                    id="memoryTrayButton"
+                    type="button"
+                    aria-label="Open recent conversations"
+                    aria-controls="memoryTray"
+                    aria-expanded="false"
+                    data-label="Recent chats"
+                >
+                    <i
+                        class="fa-solid fa-layer-group"
+                        aria-hidden="true"
+                    ></i>
+
+                    <span
+                        class="rail-notification"
+                        id="recentChatCount"
+                    >
+                        3
+                    </span>
+                </button>
+
+                <a
+                    class="rail-action"
+                    href="history.html"
+                    aria-label="Open complete chat history"
+                    data-label="History"
+                >
+                    <i
+                        class="fa-regular fa-clock"
+                        aria-hidden="true"
+                    ></i>
+                </a>
+
+                <a
+                    class="rail-action"
+                    href="features.html"
+                    aria-label="Explore Nexora features"
+                    data-label="Features"
+                >
+                    <i
+                        class="fa-solid fa-wand-magic-sparkles"
+                        aria-hidden="true"
+                    ></i>
+                </a>
+            </div>
+
+            <div class="rail-bottom">
+                <button
+                    class="rail-action"
+                    id="themeToggleButton"
+                    type="button"
+                    aria-label="Toggle theme"
+                    data-label="Theme"
+                >
+                    <i
+                        class="fa-regular fa-moon"
+                        id="themeToggleIcon"
+                        aria-hidden="true"
+                    ></i>
+                </button>
+
+                <a
+                    class="rail-action"
+                    href="settings.html"
+                    aria-label="Open settings"
+                    data-label="Settings"
+                >
+                    <i
+                        class="fa-solid fa-sliders"
+                        aria-hidden="true"
+                    ></i>
+                </a>
+
+                <button
+                    class="rail-profile"
+                    id="railProfileButton"
+                    type="button"
+                    aria-label="Open account menu"
+                    aria-haspopup="menu"
+                    aria-expanded="false"
+                >
+                    <span id="railProfileInitial">
+                        G
+                    </span>
+                </button>
+            </div>
+        </aside>
+
+        <!-- =========================================
+             RECENT CONVERSATION MEMORY TRAY
+        ========================================== -->
+
+        <aside
+            class="memory-tray"
+            id="memoryTray"
+            aria-label="Recent conversations"
+            aria-hidden="true"
+        >
+            <div class="memory-tray-header">
+                <div>
+                    <span class="section-kicker">
+                        Memory
+                    </span>
+
+                    <h2>
+                        Recent conversations
+                    </h2>
+                </div>
+
+                <button
+                    class="tray-close-button"
+                    id="closeMemoryTrayButton"
+                    type="button"
+                    aria-label="Close recent conversations"
+                >
+                    <i
+                        class="fa-solid fa-xmark"
+                        aria-hidden="true"
+                    ></i>
+                </button>
+            </div>
+
+            <div class="memory-search">
+                <i
+                    class="fa-solid fa-magnifying-glass"
+                    aria-hidden="true"
+                ></i>
+
+                <label
+                    class="sr-only"
+                    for="memorySearchInput"
+                >
+                    Search conversations
+                </label>
+
+                <input
+                    id="memorySearchInput"
+                    type="search"
+                    placeholder="Search your memory..."
+                    autocomplete="off"
+                >
+
+                <kbd>/</kbd>
+            </div>
+
+            <div
+                class="memory-list"
+                id="memoryList"
+            >
+                <article
+                    class="memory-item active"
+                    data-conversation-id="new-chat"
+                >
+                    <button
+                        class="memory-open-button"
+                        type="button"
+                    >
+                        <span class="memory-index">
+                            01
+                        </span>
+
+                        <span class="memory-copy">
+                            <strong>
+                                New conversation
+                            </strong>
+
+                            <small>
+                                Ready when you are
+                            </small>
+                        </span>
+
+                        <time datetime="2026-08-04">
+                            Now
+                        </time>
+                    </button>
+
+                    <button
+                        class="memory-options-button"
+                        type="button"
+                        aria-label="Options for new conversation"
+                    >
+                        <i
+                            class="fa-solid fa-ellipsis"
+                            aria-hidden="true"
+                        ></i>
+                    </button>
+                </article>
+
+                <article
+                    class="memory-item"
+                    data-conversation-id="portfolio-plan"
+                >
+                    <button
+                        class="memory-open-button"
+                        type="button"
+                    >
+                        <span class="memory-index">
+                            02
+                        </span>
+
+                        <span class="memory-copy">
+                            <strong>
+                                Portfolio architecture
+                            </strong>
+
+                            <small>
+                                Website structure and sections
+                            </small>
+                        </span>
+
+                        <time datetime="2026-08-04">
+                            11:42
+                        </time>
+                    </button>
+
+                    <button
+                        class="memory-options-button"
+                        type="button"
+                        aria-label="Options for portfolio architecture"
+                    >
+                        <i
+                            class="fa-solid fa-ellipsis"
+                            aria-hidden="true"
+                        ></i>
+                    </button>
+                </article>
+
+                <article
+                    class="memory-item"
+                    data-conversation-id="study-plan"
+                >
+                    <button
+                        class="memory-open-button"
+                        type="button"
+                    >
+                        <span class="memory-index">
+                            03
+                        </span>
+
+                        <span class="memory-copy">
+                            <strong>
+                                Seven-day study plan
+                            </strong>
+
+                            <small>
+                                Diploma exam preparation
+                            </small>
+                        </span>
+
+                        <time datetime="2026-08-03">
+                            Yesterday
+                        </time>
+                    </button>
+
+                    <button
+                        class="memory-options-button"
+                        type="button"
+                        aria-label="Options for seven-day study plan"
+                    >
+                        <i
+                            class="fa-solid fa-ellipsis"
+                            aria-hidden="true"
+                        ></i>
+                    </button>
+                </article>
+            </div>
+
+            <div
+                class="memory-empty"
+                id="memoryEmptyState"
+                hidden
+            >
+                <span class="memory-empty-symbol">
+                    <i
+                        class="fa-regular fa-message"
+                        aria-hidden="true"
+                    ></i>
+                </span>
+
+                <strong>
+                    Nothing found
+                </strong>
+
+                <p>
+                    Try another conversation name.
+                </p>
+            </div>
+
+            <div class="memory-tray-footer">
+                <div class="memory-sync-state">
+                    <span class="sync-indicator"></span>
+
+                    <div>
+                        <strong>
+                            Guest memory
+                        </strong>
+
+                        <span>
+                            Stored only on this device
+                        </span>
+                    </div>
+                </div>
+
+                <a
+                    class="memory-login-link"
+                    href="login.html"
+                >
+                    Sync conversations
+
+                    <i
+                        class="fa-solid fa-arrow-right"
+                        aria-hidden="true"
+                    ></i>
+                </a>
+            </div>
+        </aside>
+
+        <button
+            class="mobile-tray-backdrop"
+            id="mobileTrayBackdrop"
+            type="button"
+            aria-label="Close recent conversations"
+            hidden
+        ></button>
+
+        <!-- =========================================
+             MAIN PRODUCT STAGE
+        ========================================== -->
+
+        <main class="product-stage">
+
+            <!-- FLOATING STATUS DOCK -->
+
+            <header class="conversation-dock">
+                <div class="dock-left">
+                    <button
+                        class="mobile-memory-button"
+                        id="mobileMemoryButton"
+                        type="button"
+                        aria-label="Open recent conversations"
+                    >
+                        <i
+                            class="fa-solid fa-layer-group"
+                            aria-hidden="true"
+                        ></i>
+                    </button>
+
+                    <div class="dock-identity">
+                        <span class="dock-status-dot"></span>
+
+                        <div>
+                            <span class="dock-label">
+                                Current space
+                            </span>
+
+                            <h1 id="conversationTitle">
+                                Untitled conversation
+                            </h1>
+                        </div>
+                    </div>
+
+                    <button
+                        class="dock-icon-button"
+                        id="renameConversationButton"
+                        type="button"
+                        aria-label="Rename conversation"
+                    >
+                        <i
+                            class="fa-regular fa-pen-to-square"
+                            aria-hidden="true"
+                        ></i>
+                    </button>
+                </div>
+
+                <div class="dock-right">
+                    <div class="model-chip">
+                        <span class="model-chip-mark"></span>
+
+                        <span id="activeModelName">
+                            Nexora Core
+                        </span>
+                    </div>
+
+                    <button
+                        class="dock-icon-button"
+                        id="shareConversationButton"
+                        type="button"
+                        aria-label="Share conversation"
+                    >
+                        <i
+                            class="fa-solid fa-arrow-up-from-bracket"
+                            aria-hidden="true"
+                        ></i>
+                    </button>
+
+                    <button
+                        class="dock-icon-button"
+                        id="deleteConversationButton"
+                        type="button"
+                        aria-label="Delete conversation"
+                    >
+                        <i
+                            class="fa-regular fa-trash-can"
+                            aria-hidden="true"
+                        ></i>
+                    </button>
+
+                    <div class="account-menu">
+                        <button
+                            class="account-trigger"
+                            id="accountTrigger"
+                            type="button"
+                            aria-label="Open account menu"
+                            aria-haspopup="menu"
+                            aria-expanded="false"
+                        >
+                            <span class="account-avatar">
+                                G
+                            </span>
+
+                            <i
+                                class="fa-solid fa-chevron-down"
+                                aria-hidden="true"
+                            ></i>
+                        </button>
+
+                        <div
+                            class="account-dropdown"
+                            id="accountDropdown"
+                            role="menu"
+                            hidden
+                        >
+                            <div class="account-dropdown-header">
+                                <span class="account-large-avatar">
+                                    G
+                                </span>
+
+                                <div>
+                                    <strong>
+                                        Guest user
+                                    </strong>
+
+                                    <span>
+                                        Local workspace
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div class="dropdown-divider"></div>
+
+                            <a
+                                href="login.html"
+                                role="menuitem"
+                            >
+                                <i
+                                    class="fa-solid fa-arrow-right-to-bracket"
+                                    aria-hidden="true"
+                                ></i>
+
+                                Log in
+                            </a>
+
+                            <a
+                                href="signup.html"
+                                role="menuitem"
+                            >
+                                <i
+                                    class="fa-regular fa-user"
+                                    aria-hidden="true"
+                                ></i>
+
+                                Create account
+                            </a>
+
+                            <a
+                                href="settings.html"
+                                role="menuitem"
+                            >
+                                <i
+                                    class="fa-solid fa-sliders"
+                                    aria-hidden="true"
+                                ></i>
+
+                                Settings
+                            </a>
+
+                            <div class="dropdown-divider"></div>
+
+                            <a
+                                href="help.html"
+                                role="menuitem"
+                            >
+                                <i
+                                    class="fa-regular fa-circle-question"
+                                    aria-hidden="true"
+                                ></i>
+
+                                Help center
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- =====================================
+                 CONVERSATION CANVAS
+            ====================================== -->
+
+            <section
+                class="chat-canvas"
+                id="chatCanvas"
+                aria-label="AI conversation"
+                tabindex="-1"
+            >
+                <div class="canvas-grid-line canvas-grid-line-left"></div>
+                <div class="canvas-grid-line canvas-grid-line-right"></div>
+
+                <!-- WELCOME VIEW -->
+
+                <section
+                    class="conversation-origin"
+                    id="welcomeState"
+                    aria-labelledby="welcomeHeading"
+                >
+                    <div class="origin-label">
+                        <span class="origin-number">
+                            01
+                        </span>
+
+                        <span class="origin-line"></span>
+
+                        <span>
+                            New intelligence space
+                        </span>
+                    </div>
+
+                    <div class="origin-heading">
+                        <p>
+                            Nexora is ready
+                        </p>
+
+                        <h2 id="welcomeHeading">
+                            Start with a thought.
+                            <span>
+                                We will shape it together.
+                            </span>
+                        </h2>
+                    </div>
+
+                    <div
+                        class="prompt-paths"
+                        id="suggestedPrompts"
+                    >
+                        <button
+                            class="prompt-path"
+                            type="button"
+                            data-prompt="Explain a difficult topic using a simple real-life example."
+                        >
+                            <span class="prompt-path-number">
+                                01
+                            </span>
+
+                            <span class="prompt-path-content">
+                                <strong>
+                                    Understand
+                                </strong>
+
+                                <small>
+                                    Break down a difficult idea
+                                </small>
+                            </span>
+
+                            <span class="prompt-path-arrow">
+                                <i
+                                    class="fa-solid fa-arrow-right"
+                                    aria-hidden="true"
+                                ></i>
+                            </span>
+                        </button>
+
+                        <button
+                            class="prompt-path"
+                            type="button"
+                            data-prompt="Help me create a clean and original website layout."
+                        >
+                            <span class="prompt-path-number">
+                                02
+                            </span>
+
+                            <span class="prompt-path-content">
+                                <strong>
+                                    Create
+                                </strong>
+
+                                <small>
+                                    Turn an idea into a structure
+                                </small>
+                            </span>
+
+                            <span class="prompt-path-arrow">
+                                <i
+                                    class="fa-solid fa-arrow-right"
+                                    aria-hidden="true"
+                                ></i>
+                            </span>
+                        </button>
+
+                        <button
+                            class="prompt-path"
+                            type="button"
+                            data-prompt="Review this code and explain what can be improved."
+                        >
+                            <span class="prompt-path-number">
+                                03
+                            </span>
+
+                            <span class="prompt-path-content">
+                                <strong>
+                                    Improve
+                                </strong>
+
+                                <small>
+                                    Review code, writing, or plans
+                                </small>
+                            </span>
+
+                            <span class="prompt-path-arrow">
+                                <i
+                                    class="fa-solid fa-arrow-right"
+                                    aria-hidden="true"
+                                ></i>
+                            </span>
+                        </button>
+                    </div>
+
+                    <div class="origin-footnote">
+                        <span class="origin-pulse"></span>
+
+                        Ask naturally. Nexora keeps context inside the current conversation.
+                    </div>
+                </section>
+
+                <!-- CONVERSATION STREAM -->
+
+                <div
+                    class="conversation-stream"
+                    id="conversationStream"
+                    role="log"
+                    aria-live="polite"
+                    aria-relevant="additions"
+                    hidden
+                ></div>
+
+                <!-- TYPING RESPONSE -->
+
+                <article
+                    class="ai-turn typing-turn"
+                    id="typingIndicator"
+                    aria-label="Nexora is generating a response"
+                    hidden
+                >
+                    <div class="turn-index">
+                        AI
+                    </div>
+
+                    <div class="turn-main">
+                        <header class="turn-header">
+                            <div>
+                                <strong>
+                                    Nexora
+                                </strong>
+
+                                <span>
+                                    Generating response
+                                </span>
+                            </div>
+                        </header>
+
+                        <div class="thinking-line">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                    </div>
+                </article>
+
+                <div
+                    class="conversation-end"
+                    id="conversationEnd"
+                    aria-hidden="true"
+                ></div>
+            </section>
+
+            <!-- =====================================
+                 BOTTOM COMMAND DECK
+            ====================================== -->
+
+            <section class="command-deck">
+                <button
+                    class="jump-latest-button"
+                    id="jumpLatestButton"
+                    type="button"
+                    aria-label="Jump to latest response"
+                    hidden
+                >
+                    <i
+                        class="fa-solid fa-arrow-down"
+                        aria-hidden="true"
+                    ></i>
+
+                    Latest
+                </button>
+
+                <div
+                    class="generation-strip"
+                    id="generationStrip"
+                    hidden
+                >
+                    <div class="generation-copy">
+                        <span class="generation-wave"></span>
+
+                        <span>
+                            Nexora is responding
+                        </span>
+                    </div>
+
+                    <button
+                        class="stop-response-button"
+                        id="stopGenerationButton"
+                        type="button"
+                    >
+                        <i
+                            class="fa-solid fa-stop"
+                            aria-hidden="true"
+                        ></i>
+
+                        Stop
+                    </button>
+                </div>
+
+                <form
+                    class="command-form"
+                    id="messageForm"
+                    novalidate
+                >
+                    <div
+                        class="attachment-strip"
+                        id="attachmentPreviewList"
+                        hidden
+                    ></div>
+
+                    <div class="command-form-main">
+                        <div class="command-form-side">
+                            <input
+                                id="attachmentInput"
+                                type="file"
+                                accept=".txt,.md,.pdf,.doc,.docx,.png,.jpg,.jpeg,.webp"
+                                multiple
+                                hidden
+                            >
+
+                            <button
+                                class="command-tool"
+                                id="attachmentButton"
+                                type="button"
+                                aria-label="Attach file"
+                            >
+                                <i
+                                    class="fa-solid fa-paperclip"
+                                    aria-hidden="true"
+                                ></i>
+                            </button>
+
+                            <button
+                                class="command-tool"
+                                id="voiceInputButton"
+                                type="button"
+                                aria-label="Start voice input"
+                                aria-pressed="false"
+                            >
+                                <i
+                                    class="fa-solid fa-microphone-lines"
+                                    aria-hidden="true"
+                                ></i>
+                            </button>
+                        </div>
+
+                        <div class="command-input">
+                            <label
+                                class="sr-only"
+                                for="messageInput"
+                            >
+                                Message Nexora AI
+                            </label>
+
+                            <textarea
+                                id="messageInput"
+                                name="message"
+                                rows="1"
+                                maxlength="12000"
+                                placeholder="Ask, create, explain, improve..."
+                                autocomplete="off"
+                                required
+                            ></textarea>
+
+                            <div class="input-metadata">
+                                <button
+                                    class="response-mode-button"
+                                    id="responseModeButton"
+                                    type="button"
+                                    aria-haspopup="listbox"
+                                    aria-expanded="false"
+                                >
+                                    <span class="response-mode-dot"></span>
+
+                                    <span id="responseModeLabel">
+                                        Balanced
+                                    </span>
+
+                                    <i
+                                        class="fa-solid fa-chevron-up"
+                                        aria-hidden="true"
+                                    ></i>
+                                </button>
+
+                                <span>
+                                    Enter to send
+                                </span>
+                            </div>
+                        </div>
+
+                        <button
+                            class="send-command-button"
+                            id="sendMessageButton"
+                            type="submit"
+                            aria-label="Send message"
+                            disabled
+                        >
+                            <span>
+                                Send
+                            </span>
+
+                            <i
+                                class="fa-solid fa-arrow-up"
+                                aria-hidden="true"
+                            ></i>
+                        </button>
+                    </div>
+
+                    <div
+                        class="response-mode-menu"
+                        id="responseModeMenu"
+                        role="listbox"
+                        hidden
+                    >
+                        <button
+                            class="response-mode-option active"
+                            type="button"
+                            data-mode="balanced"
+                            role="option"
+                            aria-selected="true"
+                        >
+                            <span>
+                                01
+                            </span>
+
+                            <div>
+                                <strong>
+                                    Balanced
+                                </strong>
+
+                                <small>
+                                    Clear and useful responses
+                                </small>
+                            </div>
+                        </button>
+
+                        <button
+                            class="response-mode-option"
+                            type="button"
+                            data-mode="fast"
+                            role="option"
+                            aria-selected="false"
+                        >
+                            <span>
+                                02
+                            </span>
+
+                            <div>
+                                <strong>
+                                    Fast
+                                </strong>
+
+                                <small>
+                                    Brief and direct answers
+                                </small>
+                            </div>
+                        </button>
+
+                        <button
+                            class="response-mode-option"
+                            type="button"
+                            data-mode="deep"
+                            role="option"
+                            aria-selected="false"
+                        >
+                            <span>
+                                03
+                            </span>
+
+                            <div>
+                                <strong>
+                                    Deep
+                                </strong>
+
+                                <small>
+                                    Detailed analysis and reasoning
+                                </small>
+                            </div>
+                        </button>
+                    </div>
+                </form>
+
+                <footer class="stage-footer">
+                    <span>
+                        Nexora can make mistakes. Verify important information.
+                    </span>
+
+                    <nav aria-label="Nexora footer links">
+                        <a href="about.html">About</a>
+                        <a href="privacy.html">Privacy</a>
+                        <a href="terms.html">Terms</a>
+                        <a href="contact.html">Contact</a>
+                    </nav>
+                </footer>
+            </section>
+        </main>
+    </div>
+
+    <!-- =========================================
+         MESSAGE TEMPLATES
+    ========================================== -->
+
+    <template id="userMessageTemplate">
+        <article class="user-turn">
+            <div class="turn-index">
+                YOU
+            </div>
+
+            <div class="turn-main">
+                <header class="turn-header">
+                    <div>
+                        <strong>
+                            You
+                        </strong>
+
+                        <time class="message-time"></time>
+                    </div>
+
+                    <div class="turn-actions">
+                        <button
+                            class="turn-action edit-message-button"
+                            type="button"
+                            aria-label="Edit message"
+                        >
+                            <i
+                                class="fa-regular fa-pen-to-square"
+                                aria-hidden="true"
+                            ></i>
+                        </button>
+
+                        <button
+                            class="turn-action copy-message-button"
+                            type="button"
+                            aria-label="Copy message"
+                        >
+                            <i
+                                class="fa-regular fa-copy"
+                                aria-hidden="true"
+                            ></i>
+                        </button>
+                    </div>
+                </header>
+
+                <div class="user-turn-content"></div>
+
+                <div
+                    class="message-attachment-list"
+                    hidden
+                ></div>
+            </div>
+        </article>
+    </template>
+
+    <template id="assistantMessageTemplate">
+        <article class="ai-turn">
+            <div class="turn-index">
+                AI
+            </div>
+
+            <div class="turn-main">
+                <header class="turn-header">
+                    <div>
+                        <strong>
+                            Nexora
+                        </strong>
+
+                        <span class="message-model">
+                            Core
+                        </span>
+
+                        <time class="message-time"></time>
+                    </div>
+
+                    <div class="turn-actions">
+                        <button
+                            class="turn-action copy-response-button"
+                            type="button"
+                            aria-label="Copy response"
+                        >
+                            <i
+                                class="fa-regular fa-copy"
+                                aria-hidden="true"
+                            ></i>
+                        </button>
+
+                        <button
+                            class="turn-action regenerate-response-button"
+                            type="button"
+                            aria-label="Regenerate response"
+                        >
+                            <i
+                                class="fa-solid fa-rotate-right"
+                                aria-hidden="true"
+                            ></i>
+                        </button>
+                    </div>
+                </header>
+
+                <div class="ai-turn-content"></div>
+
+                <div class="response-evaluation">
+                    <span>
+                        Was this useful?
+                    </span>
+
+                    <button
+                        type="button"
+                        aria-label="Helpful response"
+                    >
+                        <i
+                            class="fa-regular fa-thumbs-up"
+                            aria-hidden="true"
+                        ></i>
+                    </button>
+
+                    <button
+                        type="button"
+                        aria-label="Unhelpful response"
+                    >
+                        <i
+                            class="fa-regular fa-thumbs-down"
+                            aria-hidden="true"
+                        ></i>
+                    </button>
+                </div>
+            </div>
+        </article>
+    </template>
+
+    <template id="codeBlockTemplate">
+        <section class="nexora-code-block">
+            <header>
+                <span class="code-language">
+                    Code
+                </span>
+
+                <button
+                    class="copy-code-button"
+                    type="button"
+                >
+                    <i
+                        class="fa-regular fa-copy"
+                        aria-hidden="true"
+                    ></i>
+
+                    Copy
+                </button>
+            </header>
+
+            <pre><code></code></pre>
+        </section>
+    </template>
+
+    <template id="attachmentPreviewTemplate">
+        <article class="attachment-token">
+            <span class="attachment-token-icon">
+                <i
+                    class="fa-regular fa-file"
+                    aria-hidden="true"
+                ></i>
+            </span>
+
+            <span class="attachment-token-copy">
+                <strong class="attachment-file-name"></strong>
+                <small class="attachment-file-size"></small>
+            </span>
+
+            <button
+                class="remove-attachment-button"
+                type="button"
+                aria-label="Remove attachment"
+            >
+                <i
+                    class="fa-solid fa-xmark"
+                    aria-hidden="true"
+                ></i>
+            </button>
+        </article>
+    </template>
+
+    <!-- =========================================
+         MODALS
+    ========================================== -->
+
+    <div
+        class="nexora-modal"
+        id="renameConversationModal"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="renameModalTitle"
+        hidden
+    >
+        <button
+            class="modal-backdrop"
+            type="button"
+            data-close-modal="renameConversationModal"
+            aria-label="Close dialog"
+        ></button>
+
+        <div class="modal-panel">
+            <div class="modal-heading">
+                <div>
+                    <span>
+                        Conversation identity
+                    </span>
+
+                    <h2 id="renameModalTitle">
+                        Rename this space
+                    </h2>
+                </div>
+
+                <button
+                    class="modal-close"
+                    type="button"
+                    data-close-modal="renameConversationModal"
+                    aria-label="Close dialog"
+                >
+                    <i
+                        class="fa-solid fa-xmark"
+                        aria-hidden="true"
+                    ></i>
+                </button>
+            </div>
+
+            <form id="renameConversationForm">
+                <label for="conversationNameInput">
+                    Conversation name
+                </label>
+
+                <input
+                    id="conversationNameInput"
+                    type="text"
+                    maxlength="80"
+                    placeholder="Enter a useful name"
+                    required
+                >
+
+                <div class="modal-actions">
+                    <button
+                        class="secondary-button"
+                        type="button"
+                        data-close-modal="renameConversationModal"
+                    >
+                        Cancel
+                    </button>
+
+                    <button
+                        class="primary-button"
+                        type="submit"
+                    >
+                        Save name
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div
+        class="nexora-modal"
+        id="deleteConversationModal"
+        role="alertdialog"
+        aria-modal="true"
+        aria-labelledby="deleteModalTitle"
+        hidden
+    >
+        <button
+            class="modal-backdrop"
+            type="button"
+            data-close-modal="deleteConversationModal"
+            aria-label="Close dialog"
+        ></button>
+
+        <div class="modal-panel modal-panel-small">
+            <span class="delete-modal-icon">
+                <i
+                    class="fa-regular fa-trash-can"
+                    aria-hidden="true"
+                ></i>
+            </span>
+
+            <div class="delete-modal-copy">
+                <h2 id="deleteModalTitle">
+                    Delete conversation?
+                </h2>
+
+                <p>
+                    This conversation and all of its messages will be permanently removed.
+                </p>
+            </div>
+
+            <div class="modal-actions">
+                <button
+                    class="secondary-button"
+                    type="button"
+                    data-close-modal="deleteConversationModal"
+                >
+                    Keep it
+                </button>
+
+                <button
+                    class="danger-button"
+                    id="confirmDeleteConversationButton"
+                    type="button"
+                >
+                    Delete
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- =========================================
+         CONTEXT MENU, LOADER AND TOASTS
+    ========================================== -->
+
+    <div
+        class="conversation-context-menu"
+        id="conversationContextMenu"
+        role="menu"
+        hidden
+    >
+        <button
+            type="button"
+            role="menuitem"
+            id="renameContextButton"
+        >
+            <i
+                class="fa-regular fa-pen-to-square"
+                aria-hidden="true"
+            ></i>
+
+            Rename
+        </button>
+
+        <button
+            type="button"
+            role="menuitem"
+            id="deleteContextButton"
+            class="danger-context-item"
+        >
+            <i class="fa-regular fa-trash-can" aria-hidden="true"></i>
+            Delete
+        </button>
+    </div>
+
+    <div
+        class="global-loader"
+        id="globalLoader"
+        role="status"
+        hidden
+    >
+        <span></span>
+        Loading Nexora
+    </div>
+
+    <div
+        class="toast-region"
+        id="toastRegion"
+        aria-live="polite"
+        aria-atomic="true"
+    ></div>
+
+    <script
+        type="module"
+        src="config.js"
+    ></script>
+
+    <script
+        type="module"
+        src="supabase.js"
+    ></script>
+
+    <script
+        type="module"
+        src="ui.js"
+    ></script>
+
+    <script
+        type="module"
+        src="auth.js"
+    ></script>
+
+    <script
+        type="module"
+        src="chat.js"
+    ></script>
+
+    <script
+        type="module"
+        src="index.js"
+    ></script>
+</body>
+</html>

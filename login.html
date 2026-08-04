@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="Log in to Nexora AI to access saved conversations, profile settings, and synced AI chat history."
+    >
+
+    <meta
+        name="theme-color"
+        content="#273338"
+    >
+
+    <title>Log In — Nexora AI</title>
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="nex.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="auth.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="responsive.css"
+    >
+</head>
+
+<body class="auth-page">
+    <noscript class="noscript-alert">
+        JavaScript is required to log in to Nexora AI.
+    </noscript>
+
+    <main class="auth-shell">
+
+        <!-- =========================================
+             LEFT BRAND PANEL
+        ========================================== -->
+
+        <section
+            class="auth-brand-panel"
+            aria-labelledby="loginPageTitle"
+        >
+            <header class="auth-brand-header">
+                <a
+                    class="auth-brand"
+                    href="index.html"
+                    aria-label="Nexora AI home"
+                >
+                    <span class="auth-brand-symbol">
+                        <span class="auth-symbol-line auth-symbol-line-one"></span>
+                        <span class="auth-symbol-line auth-symbol-line-two"></span>
+                        <span class="auth-symbol-core"></span>
+                    </span>
+
+                    <span class="auth-brand-name">
+                        Nexora AI
+                    </span>
+                </a>
+
+                <a
+                    class="auth-back-link"
+                    href="index.html"
+                >
+                    <i
+                        class="fa-solid fa-arrow-left"
+                        aria-hidden="true"
+                    ></i>
+
+                    Back to chat
+                </a>
+            </header>
+
+            <div class="auth-brand-content">
+                <div class="auth-section-label">
+                    <span>01</span>
+                    <span class="auth-label-line"></span>
+                    <span>Account access</span>
+                </div>
+
+                <h1 id="loginPageTitle">
+                    Continue your
+                    <span>thinking space.</span>
+                </h1>
+
+                <p>
+                    Log in to reopen previous conversations, keep your
+                    preferences synced, and continue where you stopped.
+                </p>
+
+                <div class="auth-benefit-list">
+                    <article class="auth-benefit-item">
+                        <span class="auth-benefit-number">
+                            01
+                        </span>
+
+                        <div>
+                            <strong>
+                                Synced conversations
+                            </strong>
+
+                            <p>
+                                Continue your Nexora chats across devices.
+                            </p>
+                        </div>
+                    </article>
+
+                    <article class="auth-benefit-item">
+                        <span class="auth-benefit-number">
+                            02
+                        </span>
+
+                        <div>
+                            <strong>
+                                Personal preferences
+                            </strong>
+
+                            <p>
+                                Save theme, response mode, and AI settings.
+                            </p>
+                        </div>
+                    </article>
+
+                    <article class="auth-benefit-item">
+                        <span class="auth-benefit-number">
+                            03
+                        </span>
+
+                        <div>
+                            <strong>
+                                Private workspace
+                            </strong>
+
+                            <p>
+                                Your account can access only its own records.
+                            </p>
+                        </div>
+                    </article>
+                </div>
+            </div>
+
+            <footer class="auth-brand-footer">
+                <span class="auth-security-indicator">
+                    <span></span>
+                    Secure account access
+                </span>
+
+                <nav aria-label="Legal links">
+                    <a href="privacy.html">Privacy</a>
+                    <a href="terms.html">Terms</a>
+                    <a href="help.html">Help</a>
+                </nav>
+            </footer>
+        </section>
+
+        <!-- =========================================
+             LOGIN PANEL
+        ========================================== -->
+
+        <section class="auth-form-panel">
+            <div class="auth-form-container">
+                <header class="auth-form-header">
+                    <span class="auth-form-kicker">
+                        Welcome back
+                    </span>
+
+                    <h2>
+                        Log in to Nexora
+                    </h2>
+
+                    <p>
+                        Enter your account details to continue.
+                    </p>
+                </header>
+
+                <!-- STATUS MESSAGE -->
+
+                <div
+                    class="auth-status"
+                    id="loginStatus"
+                    role="status"
+                    aria-live="polite"
+                    hidden
+                >
+                    <span class="auth-status-icon">
+                        <i
+                            class="fa-solid fa-circle-info"
+                            aria-hidden="true"
+                        ></i>
+                    </span>
+
+                    <div>
+                        <strong id="loginStatusTitle">
+                            Login status
+                        </strong>
+
+                        <p id="loginStatusMessage"></p>
+                    </div>
+                </div>
+
+                <!-- GOOGLE LOGIN -->
+
+                <button
+                    class="oauth-button"
+                    id="googleLoginButton"
+                    type="button"
+                >
+                    <span class="oauth-icon">
+                        <svg
+                            viewBox="0 0 24 24"
+                            aria-hidden="true"
+                        >
+                            <path
+                                fill="#4285F4"
+                                d="M21.6 12.23c0-.71-.06-1.39-.18-2.04H12v3.86h5.38a4.6 4.6 0 0 1-2 3.02v2.51h3.24c1.9-1.75 2.98-4.33 2.98-7.35Z"
+                            />
+                            <path
+                                fill="#34A853"
+                                d="M12 22c2.7 0 4.97-.9 6.62-2.42l-3.24-2.51c-.9.6-2.05.96-3.38.96-2.61 0-4.82-1.76-5.61-4.13H3.04v2.59A10 10 0 0 0 12 22Z"
+                            />
+                            <path
+                                fill="#FBBC05"
+                                d="M6.39 13.9A6.02 6.02 0 0 1 6.08 12c0-.66.11-1.3.31-1.9V7.51H3.04A10 10 0 0 0 2 12c0 1.61.38 3.13 1.04 4.49l3.35-2.59Z"
+                            />
+                            <path
+                                fill="#EA4335"
+                                d="M12 5.97c1.47 0 2.8.51 3.84 1.5l2.88-2.88C16.97 2.96 14.7 2 12 2a10 10 0 0 0-8.96 5.51l3.35 2.59C7.18 7.73 9.39 5.97 12 5.97Z"
+                            />
+                        </svg>
+                    </span>
+
+                    <span>
+                        Continue with Google
+                    </span>
+
+                    <i
+                        class="fa-solid fa-arrow-right"
+                        aria-hidden="true"
+                    ></i>
+                </button>
+
+                <div
+                    class="auth-divider"
+                    aria-hidden="true"
+                >
+                    <span></span>
+                    <small>or use email</small>
+                    <span></span>
+                </div>
+
+                <!-- LOGIN FORM -->
+
+                <form
+                    class="auth-form"
+                    id="loginForm"
+                    novalidate
+                >
+                    <div class="auth-field">
+                        <label for="loginEmail">
+                            Email address
+                        </label>
+
+                        <div class="auth-input-wrapper">
+                            <span class="auth-input-icon">
+                                <i
+                                    class="fa-regular fa-envelope"
+                                    aria-hidden="true"
+                                ></i>
+                            </span>
+
+                            <input
+                                id="loginEmail"
+                                name="email"
+                                type="email"
+                                inputmode="email"
+                                autocomplete="email"
+                                placeholder="you@example.com"
+                                maxlength="254"
+                                aria-describedby="loginEmailError"
+                                required
+                            >
+                        </div>
+
+                        <span
+                            class="auth-field-error"
+                            id="loginEmailError"
+                            aria-live="polite"
+                        ></span>
+                    </div>
+
+                    <div class="auth-field">
+                        <div class="auth-label-row">
+                            <label for="loginPassword">
+                                Password
+                            </label>
+
+                            <a href="forgot-password.html">
+                                Forgot password?
+                            </a>
+                        </div>
+
+                        <div class="auth-input-wrapper">
+                            <span class="auth-input-icon">
+                                <i
+                                    class="fa-solid fa-lock"
+                                    aria-hidden="true"
+                                ></i>
+                            </span>
+
+                            <input
+                                id="loginPassword"
+                                name="password"
+                                type="password"
+                                autocomplete="current-password"
+                                placeholder="Enter your password"
+                                minlength="8"
+                                maxlength="128"
+                                aria-describedby="loginPasswordError"
+                                required
+                            >
+
+                            <button
+                                class="password-toggle-button"
+                                id="loginPasswordToggle"
+                                type="button"
+                                aria-label="Show password"
+                                aria-pressed="false"
+                            >
+                                <i
+                                    class="fa-regular fa-eye"
+                                    aria-hidden="true"
+                                ></i>
+                            </button>
+                        </div>
+
+                        <span
+                            class="auth-field-error"
+                            id="loginPasswordError"
+                            aria-live="polite"
+                        ></span>
+                    </div>
+
+                    <div class="auth-form-options">
+                        <label class="auth-checkbox">
+                            <input
+                                id="rememberSession"
+                                name="remember"
+                                type="checkbox"
+                                checked
+                            >
+
+                            <span class="auth-checkbox-box">
+                                <i
+                                    class="fa-solid fa-check"
+                                    aria-hidden="true"
+                                ></i>
+                            </span>
+
+                            <span>
+                                Keep me logged in
+                            </span>
+                        </label>
+
+                        <span class="auth-encryption-note">
+                            <i
+                                class="fa-solid fa-shield-halved"
+                                aria-hidden="true"
+                            ></i>
+
+                            Secure login
+                        </span>
+                    </div>
+
+                    <button
+                        class="auth-submit-button"
+                        id="loginSubmitButton"
+                        type="submit"
+                    >
+                        <span class="auth-submit-text">
+                            Log in
+                        </span>
+
+                        <span
+                            class="auth-submit-loader"
+                            aria-hidden="true"
+                            hidden
+                        ></span>
+
+                        <i
+                            class="fa-solid fa-arrow-right"
+                            aria-hidden="true"
+                        ></i>
+                    </button>
+                </form>
+
+                <p class="auth-switch-text">
+                    New to Nexora?
+
+                    <a href="signup.html">
+                        Create an account
+                    </a>
+                </p>
+
+                <div class="auth-guest-option">
+                    <span></span>
+
+                    <a href="index.html">
+                        Continue in guest mode
+                    </a>
+
+                    <span></span>
+                </div>
+            </div>
+
+            <footer class="auth-mobile-footer">
+                <a href="privacy.html">Privacy</a>
+                <a href="terms.html">Terms</a>
+                <a href="contact.html">Contact</a>
+            </footer>
+        </section>
+    </main>
+
+    <!-- =========================================
+         PAGE LOADER
+    ========================================== -->
+
+    <div
+        class="auth-page-loader"
+        id="authPageLoader"
+        role="status"
+        aria-live="polite"
+        hidden
+    >
+        <span class="auth-page-spinner"></span>
+
+        <span id="authPageLoaderText">
+            Checking your session
+        </span>
+    </div>
+
+    <!-- =========================================
+         TOAST REGION
+    ========================================== -->
+
+    <div
+        class="toast-region"
+        id="toastRegion"
+        aria-live="polite"
+        aria-atomic="true"
+    ></div>
+
+    <script
+        type="module"
+        src="config.js"
+    ></script>
+
+    <script
+        type="module"
+        src="supabase.js"
+    ></script>
+
+    <script
+        type="module"
+        src="auth.js"
+    ></script>
+</body>
+</html>
