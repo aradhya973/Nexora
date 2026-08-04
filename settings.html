@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Manage your Nexxorra AI account settings, theme, privacy controls, and conversation preferences." />
+    <meta name="theme-color" content="#0F1318" />
+    <title>Settings — nexxorra AI</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    
+    <link rel="stylesheet" href="responsive.css">
+    <link rel="stylesheet" href="set.css">
+</head>
+<body class="settings-page">
+    <div class="nexxorra-shell">
+        <header class="app-header app-header-compact" aria-label="Primary navigation">
+            <a class="app-logo" href="index.html" aria-label="nexxorra AI home">
+                <span class="symbol-frame">
+                    <span class="symbol-line symbol-line-one"></span>
+                    <span class="symbol-line symbol-line-two"></span>
+                    <span class="symbol-core"></span>
+                </span>
+                <span class="brand-name">nexxorra AI</span>
+            </a>
+            <nav class="app-nav" aria-label="Main site navigation">
+                <a href="index.html">Chat</a>
+                <a href="features.html">Features</a>
+                <a href="history.html">History</a>
+                <a href="settings.html" aria-current="page">Settings</a>
+                <a href="help.html">Help</a>
+            </nav>
+        </header>
+
+        <main class="page-content" id="settingsPage">
+            <section class="page-intro">
+                <div>
+                    <p class="eyebrow">Settings</p>
+                    <h1>Personalize your Nexxorra workspace</h1>
+                    <p>Adjust your account profile, AI preferences, and privacy settings to match the way you work.</p>
+                </div>
+                <div class="page-actions">
+                    <span class="status-pill" id="settingsStatusLabel" role="status" aria-live="polite">Loading…</span>
+                </div>
+            </section>
+
+            <section class="settings-panel">
+                <div class="settings-card account-summary">
+                    <div class="account-summary-icon">
+                        <i class="fa-regular fa-user" aria-hidden="true"></i>
+                    </div>
+                    <div>
+                        <p class="section-label">Account</p>
+                        <h2 id="settingsAccountName">Your name</h2>
+                        <p id="settingsAccountEmail">you@example.com</p>
+                    </div>
+                </div>
+
+                <form class="settings-form" id="settingsForm">
+                    <section class="settings-section" aria-labelledby="appearanceSettingsTitle">
+                        <div class="section-header">
+                            <p class="section-label">Appearance</p>
+                            <h2 id="appearanceSettingsTitle">Theme</h2>
+                        </div>
+                        <div class="settings-field">
+                            <span class="settings-field-label" id="themeModeLabel">Theme mode</span>
+                            <div class="radio-group" role="radiogroup" aria-labelledby="themeModeLabel">
+                                <label><input type="radio" name="theme" value="system" id="themeSystem"> System</label>
+                                <label><input type="radio" name="theme" value="dark" id="themeDark"> Dark</label>
+                                <label><input type="radio" name="theme" value="light" id="themeLight"> Light</label>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="settings-section" aria-labelledby="aiPreferencesTitle">
+                        <div class="section-header">
+                            <p class="section-label">AI preferences</p>
+                            <h2 id="aiPreferencesTitle">Response and language controls</h2>
+                        </div>
+                        <div class="settings-field">
+                            <span class="settings-field-label" id="responseStyleLabel">Response style</span>
+                            <div class="radio-group" role="radiogroup" aria-labelledby="responseStyleLabel">
+                                <label><input type="radio" name="responseStyle" value="balanced" id="responseStyleBalanced"> Balanced</label>
+                                <label><input type="radio" name="responseStyle" value="fast" id="responseStyleFast"> Fast</label>
+                                <label><input type="radio" name="responseStyle" value="deep" id="responseStyleDeep"> Deep</label>
+                            </div>
+                        </div>
+                        <div class="settings-field">
+                            <label for="settingsModelDisplay">Preferred model</label>
+                            <input id="settingsModelDisplay" type="text" value="nexxorra Core" readonly aria-readonly="true">
+                        </div>
+                        <div class="settings-field">
+                            <label for="settingsLanguage">Language</label>
+                            <select id="settingsLanguage" aria-label="Preferred language">
+                                <option value="auto">Auto detect</option>
+                                <option value="en-US">English (US)</option>
+                                <option value="en-GB">English (UK)</option>
+                                <option value="es-ES">Spanish</option>
+                                <option value="fr-FR">French</option>
+                            </select>
+                        </div>
+                        <div class="settings-field toggle-row">
+                            <label for="settingsSaveHistory">Save chat history</label>
+                            <label class="toggle-switch">
+                                <input id="settingsSaveHistory" type="checkbox">
+                                <span class="toggle-slider"></span>
+                            </label>
+                        </div>
+                        <div class="settings-field toggle-row">
+                            <label for="settingsEnterToSend">Enter-to-send</label>
+                            <label class="toggle-switch">
+                                <input id="settingsEnterToSend" type="checkbox">
+                                <span class="toggle-slider"></span>
+                            </label>
+                        </div>
+                        <div class="settings-field">
+                            <label for="settingsVoiceLanguage">Voice language</label>
+                            <select id="settingsVoiceLanguage" aria-label="Voice input language">
+                                <option value="en-US">English (US)</option>
+                                <option value="en-GB">English (UK)</option>
+                                <option value="es-ES">Spanish</option>
+                                <option value="fr-FR">French</option>
+                            </select>
+                        </div>
+                    </section>
+
+                    <section class="settings-section" aria-labelledby="privacySettingsTitle">
+                        <div class="section-header">
+                            <p class="section-label">Privacy</p>
+                            <h2 id="privacySettingsTitle">Account controls</h2>
+                        </div>
+                        <p class="field-note">Manage your stored conversations and sign out securely.</p>
+                        <div class="settings-actions">
+                            <button class="secondary-button" type="button" id="deleteAllConversationsButton">Delete all conversations</button>
+                            <button class="secondary-button" type="button" id="logoutButton">Log out</button>
+                        </div>
+                    </section>
+
+                    <div class="form-footer">
+                        <button class="primary-button" type="submit" id="saveSettingsButton"><span>Save settings</span></button>
+                        <span class="form-message" id="settingsFormMessage" aria-live="polite"></span>
+                    </div>
+                </form>
+            </section>
+        </main>
+    </div>
+
+    <div class="page-loader" id="settingsPageLoader" role="status" hidden>
+        <span class="page-loader-spinner"></span>
+        <span>Loading your preferences</span>
+    </div>
+
+    <div class="nexxorra-modal" id="confirmDeleteAllModal" role="alertdialog" aria-modal="true" aria-labelledby="confirmDeleteAllTitle" hidden>
+        <div class="modal-panel modal-panel-small">
+            <span class="delete-modal-icon"><i class="fa-regular fa-trash-can" aria-hidden="true"></i></span>
+            <h2 id="confirmDeleteAllTitle">Delete all conversations?</h2>
+            <p>This action will permanently remove every saved conversation from your account.</p>
+            <div class="modal-actions">
+                <button class="secondary-button" type="button" data-close-modal="confirmDeleteAllModal">Cancel</button>
+                <button class="danger-button" type="button" id="confirmDeleteAllButton">Delete all</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="toast-region" id="toastRegion" aria-live="polite" aria-atomic="true"></div>
+
+    <script type="module" src="config.js"></script>
+    <script type="module" src="supabase.js"></script>
+    <script type="module" src="auth.js"></script>
+    <script type="module" src="settings.js"></script>
+</body>
+</html>

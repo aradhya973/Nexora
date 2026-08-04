@@ -8,42 +8,43 @@
    1. DESIGN TOKENS
 ========================================================= */
 
+
 :root {
-    --bg-main: #273338;
-    --bg-deep: #1f292d;
+    --bg-main: #0F1318;
+    --bg-deep: #151A21;
 
-    --surface: #32413f;
-    --surface-light: #3b4d48;
-    --surface-soft: rgba(50, 65, 63, 0.72);
+    --surface: #1C232C;
+    --surface-light: #252E39;
+    --surface-soft: rgba(28, 35, 44, 0.78);
 
-    --primary: #9CB080;
-    --primary-hover: #abc08f;
-    --primary-soft: rgba(156, 176, 128, 0.1);
+    --primary: #C9D8B6;
+    --primary-hover: #D8E5C8;
+    --primary-soft: rgba(201, 216, 182, 0.10);
 
-    --secondary: #618764;
-    --secondary-soft: rgba(97, 135, 100, 0.12);
+    --secondary: #8FA6FF;
+    --secondary-soft: rgba(143, 166, 255, 0.12);
 
-    --accent: #2B5748;
-    --accent-light: #376b5b;
+    --accent: #7C8CFF;
+    --accent-light: #9AA8FF;
 
-    --text-main: #F4F7F2;
-    --text-soft: #D7DED8;
-    --text-muted: #B5C0B8;
-    --text-faint: rgba(181, 192, 184, 0.5);
+    --text-main: #F4F1EA;
+    --text-soft: #D7D9D4;
+    --text-muted: #A7B0B8;
+    --text-faint: rgba(167, 176, 184, 0.55);
 
-    --border: rgba(156, 176, 128, 0.18);
-    --border-strong: rgba(156, 176, 128, 0.34);
+    --border: rgba(201, 216, 182, 0.14);
+    --border-strong: rgba(201, 216, 182, 0.28);
 
-    --danger: #e6a4a4;
-    --danger-bg: rgba(220, 105, 105, 0.09);
-    --danger-border: rgba(220, 105, 105, 0.22);
+    --danger: #F09AA4;
+    --danger-bg: rgba(240, 154, 164, 0.09);
+    --danger-border: rgba(240, 154, 164, 0.22);
 
-    --success: #a9c58f;
-    --warning: #d8c68f;
+    --success: #A9C58F;
+    --warning: #D8C68F;
 
-    --shadow-small: 0 8px 24px rgba(7, 11, 12, 0.12);
-    --shadow-medium: 0 18px 46px rgba(7, 11, 12, 0.22);
-    --shadow-large: 0 30px 80px rgba(7, 11, 12, 0.38);
+    --shadow-small: 0 8px 24px rgba(3, 7, 10, 0.18);
+    --shadow-medium: 0 18px 46px rgba(3, 7, 10, 0.28);
+    --shadow-large: 0 30px 80px rgba(3, 7, 10, 0.42);
 
     --radius-small: 8px;
     --radius-medium: 12px;
@@ -65,41 +66,41 @@
 ========================================================= */
 
 html[data-theme="light"] {
-    --bg-main: #edf1e8;
-    --bg-deep: #e2e8dc;
+    --bg-main: #F6F4EE;
+    --bg-deep: #ECE9E0;
 
-    --surface: #f8faf5;
-    --surface-light: #ffffff;
-    --surface-soft: rgba(255, 255, 255, 0.78);
+    --surface: #FFFFFF;
+    --surface-light: #F9F7F1;
+    --surface-soft: rgba(255, 255, 255, 0.82);
 
-    --primary: #687f51;
-    --primary-hover: #5a7046;
-    --primary-soft: rgba(104, 127, 81, 0.1);
+    --primary: #607357;
+    --primary-hover: #52654A;
+    --primary-soft: rgba(96, 115, 87, 0.10);
 
-    --secondary: #52775b;
-    --secondary-soft: rgba(82, 119, 91, 0.1);
+    --secondary: #6478D8;
+    --secondary-soft: rgba(100, 120, 216, 0.10);
 
-    --accent: #315f50;
-    --accent-light: #3d705f;
+    --accent: #5267CC;
+    --accent-light: #6F82DE;
 
-    --text-main: #1f2925;
-    --text-soft: #34413b;
-    --text-muted: #66736b;
-    --text-faint: rgba(72, 87, 78, 0.55);
+    --text-main: #20262B;
+    --text-soft: #3A444C;
+    --text-muted: #66727C;
+    --text-faint: rgba(87, 99, 108, 0.55);
 
-    --border: rgba(74, 96, 77, 0.16);
-    --border-strong: rgba(74, 96, 77, 0.32);
+    --border: rgba(45, 57, 66, 0.12);
+    --border-strong: rgba(45, 57, 66, 0.22);
 
-    --danger: #a44f4f;
-    --danger-bg: rgba(170, 74, 74, 0.08);
-    --danger-border: rgba(170, 74, 74, 0.18);
+    --danger: #B34D5A;
+    --danger-bg: rgba(179, 77, 90, 0.08);
+    --danger-border: rgba(179, 77, 90, 0.18);
 
     --success: #557745;
-    --warning: #8c7534;
+    --warning: #8C7534;
 
-    --shadow-small: 0 8px 24px rgba(34, 48, 39, 0.08);
-    --shadow-medium: 0 18px 46px rgba(34, 48, 39, 0.13);
-    --shadow-large: 0 30px 80px rgba(34, 48, 39, 0.18);
+    --shadow-small: 0 8px 24px rgba(27, 34, 39, 0.07);
+    --shadow-medium: 0 18px 46px rgba(27, 34, 39, 0.11);
+    --shadow-large: 0 30px 80px rgba(27, 34, 39, 0.16);
 }
 
 
@@ -227,7 +228,7 @@ table {
 }
 
 ::selection {
-    background: rgba(156, 176, 128, 0.28);
+    background: rgba(201, 216, 182, 0.28);
     color: var(--text-main);
 }
 
@@ -239,7 +240,7 @@ table {
 * {
     scrollbar-width: thin;
     scrollbar-color:
-        rgba(156, 176, 128, 0.2)
+        rgba(201, 216, 182, 0.2)
         transparent;
 }
 
@@ -255,12 +256,12 @@ table {
 *::-webkit-scrollbar-thumb {
     border: 2px solid transparent;
     border-radius: var(--radius-pill);
-    background: rgba(156, 176, 128, 0.2);
+    background: rgba(201, 216, 182, 0.2);
     background-clip: padding-box;
 }
 
 *::-webkit-scrollbar-thumb:hover {
-    background: rgba(156, 176, 128, 0.34);
+    background: rgba(201, 216, 182, 0.34);
     background-clip: padding-box;
 }
 
@@ -380,13 +381,13 @@ table {
     z-index: 100;
     min-height: 68px;
     border-bottom: 1px solid var(--border);
-    background: rgba(31, 41, 45, 0.9);
+    background: rgba(21, 26, 33, 0.9);
     backdrop-filter: blur(14px);
     -webkit-backdrop-filter: blur(14px);
 }
 
 html[data-theme="light"] .site-navbar {
-    background: rgba(237, 241, 232, 0.9);
+    background: rgba(246, 244, 238, 0.9);
 }
 
 .navbar-inner {
@@ -671,14 +672,14 @@ html[data-theme="light"] .site-navbar {
 .form-control:hover,
 .form-select:hover,
 .form-textarea:hover {
-    border-color: rgba(156, 176, 128, 0.28);
+    border-color: rgba(201, 216, 182, 0.28);
 }
 
 .form-control:focus,
 .form-select:focus,
 .form-textarea:focus {
-    border-color: rgba(156, 176, 128, 0.55);
-    box-shadow: 0 0 0 3px rgba(156, 176, 128, 0.08);
+    border-color: rgba(201, 216, 182, 0.55);
+    box-shadow: 0 0 0 3px rgba(201, 216, 182, 0.08);
 }
 
 .form-control[aria-invalid="true"],
@@ -813,7 +814,7 @@ html[data-theme="light"] .site-navbar {
 .panel-soft {
     border: 1px solid var(--border);
     border-radius: var(--radius-large);
-    background: rgba(50, 65, 63, 0.5);
+    background: rgba(28, 35, 44, 0.5);
 }
 
 .card {
@@ -828,7 +829,7 @@ html[data-theme="light"] .site-navbar {
 }
 
 .card:hover {
-    border-color: rgba(156, 176, 128, 0.3);
+    border-color: rgba(201, 216, 182, 0.3);
     transform: translateY(-2px);
 }
 
@@ -1039,18 +1040,18 @@ html[data-theme="light"] .site-navbar {
 }
 
 .alert-info .alert-icon {
-    background: rgba(97, 135, 100, 0.14);
+    background: rgba(124, 140, 255, 0.14);
     color: var(--primary);
 }
 
 .alert-success {
-    border-color: rgba(156, 176, 128, 0.22);
-    background: rgba(156, 176, 128, 0.08);
+    border-color: rgba(201, 216, 182, 0.22);
+    background: rgba(201, 216, 182, 0.08);
     color: var(--text-muted);
 }
 
 .alert-success .alert-icon {
-    background: rgba(156, 176, 128, 0.12);
+    background: rgba(201, 216, 182, 0.12);
     color: var(--success);
 }
 
@@ -1073,7 +1074,7 @@ html[data-theme="light"] .site-navbar {
 .spinner {
     width: 20px;
     height: 20px;
-    border: 2px solid rgba(156, 176, 128, 0.18);
+    border: 2px solid rgba(201, 216, 182, 0.18);
     border-top-color: var(--primary);
     border-radius: 50%;
     animation: spinner-rotate 700ms linear infinite;
@@ -1085,9 +1086,9 @@ html[data-theme="light"] .site-navbar {
     background:
         linear-gradient(
             90deg,
-            rgba(156, 176, 128, 0.05),
-            rgba(156, 176, 128, 0.14),
-            rgba(156, 176, 128, 0.05)
+            rgba(201, 216, 182, 0.05),
+            rgba(201, 216, 182, 0.14),
+            rgba(201, 216, 182, 0.05)
         );
     background-size: 220% 100%;
     animation: skeleton-move 1.3s ease-in-out infinite;
@@ -1558,4 +1559,88 @@ select:focus-visible,
         animation-iteration-count: 1 !important;
         transition-duration: 0.01ms !important;
     }
+}
+/* =========================================================
+   NEXXORRA — FULL GLASSMORPHISM LAYER
+========================================================= */
+
+:root {
+    --glass-bg: rgba(28, 35, 44, 0.58);
+    --glass-bg-strong: rgba(21, 26, 33, 0.76);
+    --glass-bg-soft: rgba(255, 255, 255, 0.055);
+    --glass-border: rgba(244, 241, 234, 0.11);
+    --glass-border-strong: rgba(201, 216, 182, 0.22);
+    --glass-highlight: inset 0 1px 0 rgba(255, 255, 255, 0.09);
+    --glass-shadow: 0 20px 55px rgba(2, 6, 10, 0.30);
+    --glass-shadow-soft: 0 10px 30px rgba(2, 6, 10, 0.20);
+    --glass-blur: blur(22px) saturate(135%);
+    --glass-blur-heavy: blur(30px) saturate(145%);
+}
+
+html[data-theme="light"] {
+    --glass-bg: rgba(255, 255, 255, 0.62);
+    --glass-bg-strong: rgba(246, 244, 238, 0.80);
+    --glass-bg-soft: rgba(255, 255, 255, 0.45);
+    --glass-border: rgba(32, 38, 43, 0.10);
+    --glass-border-strong: rgba(82, 103, 204, 0.18);
+    --glass-highlight: inset 0 1px 0 rgba(255, 255, 255, 0.78);
+    --glass-shadow: 0 20px 55px rgba(27, 34, 39, 0.13);
+    --glass-shadow-soft: 0 10px 30px rgba(27, 34, 39, 0.09);
+}
+
+body,
+.page-shell,
+.auth-page {
+    background:
+        radial-gradient(circle at 12% 8%, rgba(124, 140, 255, 0.15), transparent 34%),
+        radial-gradient(circle at 88% 14%, rgba(201, 216, 182, 0.11), transparent 31%),
+        radial-gradient(circle at 52% 100%, rgba(143, 166, 255, 0.09), transparent 38%),
+        var(--bg-main);
+    background-attachment: fixed;
+}
+
+.site-navbar,
+.panel,
+.panel-soft,
+.card,
+.dropdown-menu,
+.modal-content,
+.toast,
+.alert,
+.form-control,
+.form-select,
+.form-textarea {
+    border-color: var(--glass-border);
+    background: var(--glass-bg);
+    box-shadow: var(--glass-highlight), var(--glass-shadow-soft);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+}
+
+.site-navbar {
+    background: var(--glass-bg-strong);
+}
+
+.button-secondary,
+.button-ghost:hover:not(:disabled),
+.input-action:hover,
+.dropdown-item:hover {
+    border-color: var(--glass-border);
+    background: var(--glass-bg-soft);
+}
+
+.button-primary {
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.18),
+        0 12px 30px rgba(124, 140, 255, 0.24);
+}
+
+.form-control:focus,
+.form-select:focus,
+.form-textarea:focus {
+    background: var(--glass-bg-strong);
+    box-shadow:
+        0 0 0 3px rgba(124, 140, 255, 0.13),
+        var(--glass-highlight),
+        var(--glass-shadow-soft);
 }

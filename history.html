@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="View and manage your saved conversations in Nexxorra AI history." />
+    <meta name="theme-color" content="#810B38" />
+    <title>History — nexxorra AI</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link rel="stylesheet" href="nex.css">
+    <link rel="stylesheet" href="history.css">
+    <link rel="stylesheet" href="responsive.css">
+</head>
+<body class="history-page">
+    <div class="nexxorra-shell">
+        <header class="app-header app-header-compact" aria-label="Primary navigation">
+            <a class="app-logo" href="index.html" aria-label="nexxorra AI home">
+                <span class="symbol-frame">
+                    <span class="symbol-line symbol-line-one"></span>
+                    <span class="symbol-line symbol-line-two"></span>
+                    <span class="symbol-core"></span>
+                </span>
+                <span class="brand-name">nexxorra AI</span>
+            </a>
+
+            <nav class="app-nav" aria-label="Main site navigation">
+                <a href="index.html">Chat</a>
+                <a href="features.html">Features</a>
+                <a href="history.html" aria-current="page">History</a>
+                <a href="settings.html">Settings</a>
+                <a href="help.html">Help</a>
+            </nav>
+        </header>
+
+        <main class="page-content" id="historyPage">
+            <section class="page-intro">
+                <div>
+                    <p class="eyebrow">History</p>
+                    <h1>Saved conversations</h1>
+                    <p>Browse your pinned chats, archived conversations, and search your Nexxorra memory.</p>
+                </div>
+
+                <div class="page-actions">
+                    <span class="history-count" id="historyConversationCount">0 conversations</span>
+                </div>
+            </section>
+
+            <section class="filter-bar" aria-label="History filters">
+                <div class="filter-group">
+                    <label for="historySearchInput">Search conversations</label>
+                    <div class="search-field">
+                        <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+                        <input id="historySearchInput" type="search" placeholder="Search history..." autocomplete="off" aria-label="Search your conversations">
+                    </div>
+                </div>
+
+                <div class="filter-group filter-group-inline">
+                    <label for="historyStatusSelect">Filter</label>
+                    <select id="historyStatusSelect" aria-label="Filter conversation status">
+                        <option value="all">All conversations</option>
+                        <option value="pinned">Pinned</option>
+                        <option value="archived">Archived</option>
+                        <option value="active">Active</option>
+                    </select>
+                </div>
+
+                <div class="filter-group filter-group-inline">
+                    <label for="historySortSelect">Sort</label>
+                    <select id="historySortSelect" aria-label="Sort conversations">
+                        <option value="newest">Newest first</option>
+                        <option value="oldest">Oldest first</option>
+                    </select>
+                </div>
+            </section>
+
+            <section class="content-panel" id="historyContent">
+                <div class="status-banner" id="historyLoadingState" hidden>
+                    <div class="status-loader"></div>
+                    <div>
+                        <strong>Loading conversations</strong>
+                        <p>Fetching your Nexxorra history. This may take a moment.</p>
+                    </div>
+                </div>
+
+                <div class="status-banner status-warning" id="historyErrorState" hidden>
+                    <i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i>
+                    <div>
+                        <strong>Unable to load history</strong>
+                        <p>There was an error fetching your conversations. Refresh the page or try again later.</p>
+                    </div>
+                </div>
+
+                <div class="empty-state" id="historyEmptyState" hidden>
+                    <div class="empty-illustration"></div>
+                    <h2>No conversations yet</h2>
+                    <p>Your Nexxorra history will appear here when you start chatting.</p>
+                    <a class="primary-button" href="index.html">Start a conversation</a>
+                </div>
+
+                <div class="empty-state" id="historySearchEmptyState" hidden>
+                    <div class="empty-illustration"></div>
+                    <h2>No conversations found</h2>
+                    <p>Try a different search term or clear your filters.</p>
+                    <button class="secondary-button" type="button" id="historyClearSearchButton">Clear search</button>
+                </div>
+
+                <div class="conversation-summary" id="historyPinnedSection" hidden>
+                    <div class="section-label">
+                        <span>Pinned conversations</span>
+                        <small>Keep your most important chats ready.</small>
+                    </div>
+                    <div class="conversation-list" id="historyPinnedList"></div>
+                </div>
+
+                <div class="conversation-summary" id="historyActiveSection">
+                    <div class="section-label">
+                        <span>All conversations</span>
+                        <small>Review and manage your stored chat history.</small>
+                    </div>
+                    <div class="conversation-list" id="historyConversationList"></div>
+                </div>
+
+                <div class="conversation-summary" id="historyArchivedSection" hidden>
+                    <div class="section-label">
+                        <span>Archived conversations</span>
+                        <small>Old threads you have archived.</small>
+                    </div>
+                    <div class="conversation-list" id="historyArchivedList"></div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <div class="page-loader" id="historyPageLoader" role="status" hidden>
+        <span class="page-loader-spinner"></span>
+        <span>Checking your account</span>
+    </div>
+
+    <div class="nexxorra-modal" id="renameConversationModal" role="dialog" aria-modal="true" aria-labelledby="renameConversationTitle" hidden>
+        <div class="modal-panel modal-panel-small">
+            <h2 id="renameConversationTitle">Rename conversation</h2>
+            <p>Give this chat a descriptive title so it is easier to find later.</p>
+            <label for="renameConversationInput">Conversation title</label>
+            <input id="renameConversationInput" type="text" maxlength="80" placeholder="Enter a new title" />
+            <div class="modal-actions">
+                <button class="secondary-button" type="button" data-close-modal="renameConversationModal">Cancel</button>
+                <button class="primary-button" type="button" id="confirmRenameConversationButton">Save</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="nexxorra-modal" id="deleteConversationModal" role="alertdialog" aria-modal="true" aria-labelledby="deleteConversationTitle" hidden>
+        <div class="modal-panel modal-panel-small">
+            <span class="delete-modal-icon"><i class="fa-regular fa-trash-can" aria-hidden="true"></i></span>
+            <h2 id="deleteConversationTitle">Delete conversation?</h2>
+            <p>This conversation and its message history will be permanently removed.</p>
+            <div class="modal-actions">
+                <button class="secondary-button" type="button" data-close-modal="deleteConversationModal">Keep it</button>
+                <button class="danger-button" type="button" id="confirmDeleteConversationButton">Delete</button>
+            </div>
+        </div>
+    </div>
+
+    <template id="historyConversationTemplate">
+        <article class="conversation-card">
+            <div class="conversation-card-main">
+                <div class="conversation-card-header">
+                    <span class="conversation-title">Conversation title</span>
+                    <span class="conversation-meta">3 messages · Updated today</span>
+                </div>
+                <p class="conversation-preview">A short preview of the last message in this conversation.</p>
+            </div>
+            <div class="conversation-card-actions">
+                <button class="icon-button pin-button" type="button" aria-label="Pin conversation"><i class="fa-solid fa-thumbtack" aria-hidden="true"></i></button>
+                <button class="icon-button" type="button" aria-label="Rename conversation"><i class="fa-regular fa-pen-to-square" aria-hidden="true"></i></button>
+                <button class="icon-button" type="button" aria-label="Archive conversation"><i class="fa-solid fa-box-archive" aria-hidden="true"></i></button>
+                <button class="icon-button" type="button" aria-label="Delete conversation"><i class="fa-regular fa-trash-can" aria-hidden="true"></i></button>
+                <a class="conversation-open-button" href="index.html">Open</a>
+            </div>
+        </article>
+    </template>
+
+    <div class="toast-region" id="toastRegion" aria-live="polite" aria-atomic="true"></div>
+
+    <script type="module" src="config.js"></script>
+    <script type="module" src="supabase.js"></script>
+    <script type="module" src="auth.js"></script>
+    <script type="module" src="history.js"></script>
+</body>
+</html>

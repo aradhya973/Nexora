@@ -862,7 +862,7 @@ code,
     .conversation-dock:focus-within,
     .command-form:focus-within {
         border-color:
-            rgba(156, 176, 128, 0.34);
+            rgba(201, 216, 182, 0.34);
     }
 
     .memory-open-button:focus-visible,
@@ -883,7 +883,7 @@ code,
     html[data-theme="light"]
     .conversation-dock {
         background:
-            rgba(248, 250, 245, 0.88);
+            rgba(255, 255, 255, 0.88);
     }
 
     html[data-theme="light"]
@@ -953,7 +953,7 @@ code,
         padding: 8px 10px;
         border: 1px solid var(--border);
         border-radius: 18px;
-        background: rgba(31, 41, 45, 0.94);
+        background: rgba(21, 26, 33, 0.94);
         box-shadow:
             0 20px 50px rgba(7, 11, 12, 0.34),
             inset 0 1px 0 rgba(255, 255, 255, 0.04);
@@ -964,7 +964,7 @@ code,
     html[data-theme="light"]
     .command-rail {
         background:
-            rgba(226, 232, 220, 0.95);
+            rgba(236, 233, 224, 0.95);
     }
 
     .rail-top,
@@ -1425,7 +1425,7 @@ code,
         border: 1px solid var(--border);
         border-radius: 17px;
         background:
-            rgba(31, 41, 45, 0.95);
+            rgba(21, 26, 33, 0.95);
         box-shadow:
             0 18px 42px
             rgba(7, 11, 12, 0.34);
@@ -1436,7 +1436,7 @@ code,
     html[data-theme="light"]
     .command-rail {
         background:
-            rgba(226, 232, 220, 0.95);
+            rgba(236, 233, 224, 0.95);
     }
 
     .rail-top,
@@ -2063,13 +2063,13 @@ code,
     html[data-theme="light"]
     .conversation-dock {
         background:
-            rgba(248, 250, 245, 0.92);
+            rgba(255, 255, 255, 0.92);
     }
 
     html[data-theme="light"]
     .command-form {
         background:
-            rgba(248, 250, 245, 0.96);
+            rgba(255, 255, 255, 0.96);
     }
 
     html[data-theme="light"]
@@ -2136,7 +2136,7 @@ code,
         border: 1px solid var(--border);
         border-radius: 16px;
         background:
-            rgba(31, 41, 45, 0.96);
+            rgba(21, 26, 33, 0.96);
         box-shadow:
             0 18px 44px
             rgba(7, 11, 12, 0.36);
@@ -2147,7 +2147,7 @@ code,
     html[data-theme="light"]
     .command-rail {
         background:
-            rgba(226, 232, 220, 0.96);
+            rgba(236, 233, 224, 0.96);
     }
 
     .rail-top,
@@ -3670,5 +3670,90 @@ code,
     .user-turn-content a {
         overflow-wrap: anywhere;
         word-break: break-word;
+    }
+}
+
+/* =========================================================
+   NEXXORRA — RESPONSIVE COLOR POLISH
+========================================================= */
+
+@media (max-width: 900px) {
+    .command-rail {
+        background: rgba(21, 26, 33, 0.96);
+    }
+
+    .command-deck {
+        background: linear-gradient(to bottom, transparent, var(--bg-main) 26px);
+    }
+
+    html[data-theme="light"] .command-rail {
+        background: rgba(236, 233, 224, 0.97);
+    }
+
+    html[data-theme="light"] .command-form,
+    html[data-theme="light"] .conversation-dock {
+        background: rgba(255, 255, 255, 0.95);
+    }
+}
+
+/* =========================================================
+   NEXXORRA — RESPONSIVE GLASSMORPHISM FIXES
+========================================================= */
+
+@media (max-width: 900px) {
+    .command-rail {
+        border: 1px solid var(--glass-border);
+        background: var(--glass-bg-strong) !important;
+        box-shadow: var(--glass-highlight), var(--glass-shadow);
+        backdrop-filter: blur(26px) saturate(145%);
+        -webkit-backdrop-filter: blur(26px) saturate(145%);
+    }
+
+    .memory-tray {
+        border: 1px solid var(--glass-border);
+        background: var(--glass-bg-strong) !important;
+        box-shadow: var(--glass-highlight), var(--glass-shadow);
+        backdrop-filter: blur(28px) saturate(150%);
+        -webkit-backdrop-filter: blur(28px) saturate(150%);
+    }
+
+    .conversation-dock,
+    .command-form,
+    .account-dropdown,
+    .response-mode-menu {
+        border-color: var(--glass-border);
+        background: var(--glass-bg-strong) !important;
+        box-shadow: var(--glass-highlight), var(--glass-shadow-soft);
+        backdrop-filter: blur(24px) saturate(145%);
+        -webkit-backdrop-filter: blur(24px) saturate(145%);
+    }
+
+    .command-deck {
+        background: linear-gradient(to bottom, transparent, rgba(15,19,24,0.72) 28px, rgba(15,19,24,0.95)) !important;
+    }
+
+    .ai-turn .turn-main,
+    .typing-turn .turn-main {
+        padding: 14px;
+        border-radius: 16px;
+    }
+}
+
+@media (max-width: 600px) {
+    .auth-brand-panel {
+        margin: 8px;
+        min-height: auto;
+        border-radius: 20px;
+    }
+
+    .auth-form-container {
+        padding: 20px 16px;
+        border-radius: 20px;
+    }
+
+    .prompt-path,
+    .ai-turn .turn-main,
+    .typing-turn .turn-main {
+        background: rgba(255,255,255,0.055);
     }
 }

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Find help topics, troubleshooting guides, and support information for Nexxorra AI." />
+    <meta name="theme-color" content="#810B38" />
+    <title>Help — nexxorra AI</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link rel="stylesheet" href="help.css">
+    <link rel="stylesheet" href="responsive.css">
+</head>
+<body class="help-page">
+    <div class="nexxorra-shell">
+        <header class="app-header app-header-compact" aria-label="Primary navigation">
+            <a class="app-logo" href="index.html" aria-label="nexxorra AI home">
+                <span class="symbol-frame">
+                    <span class="symbol-line symbol-line-one"></span>
+                    <span class="symbol-line symbol-line-two"></span>
+                    <span class="symbol-core"></span>
+                </span>
+                <span class="brand-name">nexxorra AI</span>
+            </a>
+            <nav class="app-nav" aria-label="Main site navigation">
+                <a href="index.html">Chat</a>
+                <a href="features.html">Features</a>
+                <a href="history.html">History</a>
+                <a href="settings.html">Settings</a>
+                <a href="help.html" aria-current="page">Help</a>
+            </nav>
+        </header>
+
+        <main class="page-content">
+            <section class="page-hero">
+                <div>
+                    <p class="eyebrow">Help center</p>
+                    <h1>Find answers for Nexxorra AI</h1>
+                    <p>Search help topics, troubleshoot Gemini errors, and learn how to get the most from your AI workspace.</p>
+                </div>
+                <div class="search-callout">
+                    <label for="helpSearchInput" class="sr-only">Search help topics</label>
+                    <div class="search-field search-field-large">
+                        <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+                        <input id="helpSearchInput" type="search" placeholder="Search help topics..." autocomplete="off" aria-label="Search help topics">
+                    </div>
+                </div>
+            </section>
+
+            <section class="help-grid">
+                <article class="help-card">
+                    <h2>Getting started</h2>
+                    <p>Learn how to begin a conversation, switch modes, and save your first chat.</p>
+                </article>
+                <article class="help-card">
+                    <h2>Using Nexxorra AI</h2>
+                    <p>Discover tips for writing prompts, preserving context, and managing the chat composer.</p>
+                </article>
+                <article class="help-card">
+                    <h2>Login & signup</h2>
+                    <p>Find help for account creation, Google sign-in, and authenticating securely.</p>
+                </article>
+                <article class="help-card">
+                    <h2>Password recovery</h2>
+                    <p>Recover access with a secure reset link and keep your saved conversations intact.</p>
+                </article>
+            </section>
+
+            <section class="help-section" aria-labelledby="helpTopicsTitle">
+                <h2 id="helpTopicsTitle">Support topics</h2>
+                <div class="help-topic-list">
+                    <article>
+                        <h3>Chat history</h3>
+                        <p>Saved conversations are available on the History page. You can search, pin, archive, rename, and delete past chats.</p>
+                    </article>
+                    <article>
+                        <h3>Settings</h3>
+                        <p>Customize your theme, response style, language, and privacy preferences in the Settings page.</p>
+                    </article>
+                    <article>
+                        <h3>Privacy & data</h3>
+                        <p>Your account sync uses Supabase authentication. Gemini API keys remain secure on the backend and are not exposed to the browser.</p>
+                    </article>
+                    <article>
+                        <h3>Gemini errors</h3>
+                        <p>Invalid API keys, quota limits, or network failures show readable messages. Refresh and try again, or contact support if issues persist.</p>
+                    </article>
+                </div>
+            </section>
+
+            <section class="help-faq" aria-labelledby="faqTitle">
+                <h2 id="faqTitle">Frequently asked questions</h2>
+                <details>
+                    <summary>How do I save my chat history?</summary>
+                    <p>History is saved automatically for logged-in users. Use the History page to review, rename, or archive conversations.</p>
+                </details>
+                <details>
+                    <summary>Can I use Nexxorra without an account?</summary>
+                    <p>Yes. Guest mode stores your workspace locally until you sign up or log in to sync it online.</p>
+                </details>
+                <details>
+                    <summary>Why am I seeing a Gemini API key error?</summary>
+                    <p>This means the backend Gemini configuration is missing or invalid. Contact support if the issue continues.</p>
+                </details>
+                <details>
+                    <summary>How do I reset my password?</summary>
+                    <p>Use the Forgot Password page to request a reset email. Then follow the secure link to update your password.</p>
+                </details>
+            </section>
+
+            <section class="help-cta">
+                <h2>Still need help?</h2>
+                <p>Contact the Nexxorra support team for assistance with account, history, or API issues.</p>
+                <a class="primary-button" href="mailto:support@nexxorra.ai">Contact support</a>
+            </section>
+        </main>
+    </div>
+
+    <footer class="minimal-footer">
+        <p>&copy; 2026 nexxorra AI. Privacy · Terms · Help</p>
+    </footer>
+    <script src="help.js" defer></script>
+</body>
+</html>

@@ -40,7 +40,7 @@ const CURRENT_ENVIRONMENT =
 ========================================================= */
 
 const SUPABASE_CONFIG = Object.freeze({
-    url: "https://lqpvlpebtfiyfldvqvdx.supabase.coL",
+    url: "https://lqpvlpebtfiyfldvqvdx.supabase.co",
 
     anonKey: "sb_publishable_n8gl-tZmJT169LfoICxeYg_kRfa_E1_",
 
@@ -106,7 +106,7 @@ const API_CONFIG = Object.freeze({
 
     timeout: 90000,
 
-    streaming: true,
+    streaming: false,
 
     retryAttempts: 2,
 
